@@ -38,11 +38,8 @@
                 <div class="menu-close"><ion-icon name="close"></ion-icon></div>
             </div>
             <div class="navigation">
-                <?php // wp_nav_menu( array( 'theme_location' => 'nav1' ) ); ?>
+                <?php wp_nav_menu( array( 'theme_location' => 'nav1' ) ); ?>
             </div>
         </div>
     </div>
-</div>
-
-
 </div>

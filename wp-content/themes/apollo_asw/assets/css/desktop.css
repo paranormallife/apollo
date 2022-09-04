@@ -1,5 +1,60 @@
 @media screen and ( min-width: 1080px ) {
 
+    .menu-toggle {
+        display: none;
+    }
     
+    .navigation {
+        background-color: transparent;
+        height: auto;
+        padding: 0;
+        position: static;
+        width: 100%;
+    }
+    
+    .navigation ul li {
+        display: inline-block;
+    }
+    
+    .navigation ul li.menu-item-has-children {
+        position: relative;
+    }
+    
+    .navigation ul.sub-menu {
+        position: absolute;
+    }
+    
+    .navigation ul a {
+        font-size: 1.25rem;
+        font-weight: normal;
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+    }
+    
+    .navigation li:not(:last-of-type) {
+        margin-right: 1rem;
+    }
+    
+    .navigation ul.sub-menu {
+        background-color: rgba(255,255,255,0.90);
+        max-height: 0;
+        overflow: hidden;
+        transition: all 1s ease-in-out 0s;
+    }
+    
+    .navigation ul.sub-menu li a {
+        text-transform: none;
+        padding: 0.5rem;
+        white-space: nowrap;
+    }
+    
+    .navigation li.menu-item-has-children:hover ul.sub-menu {
+        max-height: 9999px;
+    }
+
+    .homepage-services {
+        grid-gap: 2rem;
+    }
 
 }

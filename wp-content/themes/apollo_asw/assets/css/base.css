@@ -11,7 +11,7 @@ body {
 
 header {
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 
 a {
@@ -21,7 +21,6 @@ a {
 
 a:hover {
     color: var(--cyan);
-    border-bottom: 1px solid black;
 }
 
 p {
@@ -70,7 +69,7 @@ p {
 
 .header-areas .secondary ion-icon {
     font-size: 1.5rem;
-    transform: translateY(0.25rem);
+    transform: translateY(0.25em);
 }
 
 .header-areas .primary {
@@ -111,6 +110,222 @@ p {
 
 #body:not(.menu-active) .menu-toggle .menu-close, #body.menu-active .menu-toggle .menu-open {
     display: none;
+}
+
+.navigation {
+    background-color: rgba(255,255,255,0.95);
+    height: 100vh;
+    left: 0;
+    width: 75%;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    transition: left 500ms ease-in-out 0s;
+    z-index: 10;
+}
+
+.header-areas .primary {
+    position: relative;
+    z-index: 10;
+}
+
+.navigation ul {
+    font-size: 1.5rem;
+    list-style-type: none;
+    margin: 0;
+}
+
+.navigation ul a {
+    display: block;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+}
+
+.navigation ul a:hover {
+    border: 0;
+    opacity: 0.75;
+}
+
+.navigation ul ul a {
+    font-weight: normal;
+    padding-left: 1rem;
+}
+
+#body:not(.menu-active) .navigation {
+    left: -75vw;
+}
+
+.rating-stars ul {
+    color: #EDEDED;
+    display: flex;
+    font-size: 1.5rem;
+    list-style-type: none;
+    justify-content: center;
+    margin: 1rem auto;
+    padding: 0;
+}
+
+.rating-stars.rating-5 li.one, 
+.rating-stars.rating-5 li.two, 
+.rating-stars.rating-5 li.three, 
+.rating-stars.rating-5 li.four, 
+.rating-stars.rating-5 li.five {
+    color: var(--gold);
+} 
+
+.rating-stars.rating-4 li.one, 
+.rating-stars.rating-4 li.two, 
+.rating-stars.rating-4 li.three, 
+.rating-stars.rating-4 li.four {
+    color: var(--gold);
+}
+
+.rating-stars.rating-3 li.one, 
+.rating-stars.rating-3 li.two, 
+.rating-stars.rating-3 li.three {
+    color: var(--gold);
+} 
+
+.rating-stars.rating-2 li.one, 
+.rating-stars.rating-2 li.two {
+    color: var(--gold);
+} 
+
+.rating-stars.rating-1 li.one {
+    color: var(--gold);
+}
+
+.testimonials-carousel {
+    position: relative;
+    text-align: center;
+}
+
+.testimonials-carousel .arrow {
+    background-color: white;
+    cursor: pointer;
+    display: block;
+    opacity: 0.5;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 1rem;
+    z-index: 2;
+}
+
+.testimonials-carousel .arrow:hover {
+    opacity: 1;
+}
+
+.testimonials-carousel .arrow.next {
+    right: 0;
+}
+
+.testimonials-carousel .slick-list {
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-slide .attribution {
+    font: italic 1rem var(--serif);
+    margin-top: 1rem;
+}
+
+.testimonial-slide .attribution .location {
+    color: rgba(0,0,0,0.5);
+}
+
+.homepage-cta {
+    display: table;
+    margin: 1rem auto;
+}
+
+.homepage-cta a {
+    display: block;
+    background-color: var(--gold);
+    border-radius: 1rem;
+    box-shadow: -2px 2px 0 black;
+    color: black;
+    padding: 1rem;
+    text-align: center;
+    transition: all 500ms linear 0s;
+}
+
+.homepage-cta .line-1 {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+.homepage-cta .line-2 {
+    font-family: var(--serif);
+}
+
+.homepage-cta .line-3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.homepage-cta .phone {
+    color: rgba(0,0,0,0.5);
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.homepage-cta .phone ion-icon {
+    transform: translateY(0.15em);
+}
+
+.homepage-cta a:hover {
+    box-shadow: -4px 4px 0 black;
+    transform: translate(3px, -3px);
+}
+
+.homepage-services {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+}
+
+.homepage-services a {
+    background-position: center;
+    background-size: cover;
+    border-radius: 1rem;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    padding-top: 66.66%;
+}
+
+.homepage-services .title {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem;
+    text-transform: uppercase;
+}
+
+main.homepage {
+    padding: 2rem 0;
+}
+
+.slim {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--slim);
+}
+
+.page-content h3 {
+    font: italic 1.25rem/1 var(--serif);
+    margin-bottom: 0.5rem;
+}
+
+.page-content h2 {
+    font: normal 1.5rem var(--heading);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
 }
 
 /* Mobile Only Styles */

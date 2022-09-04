@@ -4,7 +4,16 @@
 
 <div class="page-width">
 
-    Put stuff here.
+    <?php if( is_front_page() ) : ?>
+        <?php get_template_part('snippets/testimonials-carousel'); ?>
+        <?php get_template_part('snippets/homepage-cta'); ?>
+        <?php get_template_part('snippets/homepage-services'); ?>
+        <main class="homepage">
+            <div class="page-content slim">
+                <?php the_content(); ?>
+            </div>
+        </main>
+    <?php endif; ?>
 
 </div>
 

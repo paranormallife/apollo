@@ -76,3 +76,5 @@ if (is_singular() && comments_open() && (get_option('thread_comments') == 1)) {
 // Include Extras
 include_once( get_template_directory() . '/customizations/theme-customizations.php' );
 include_once( get_template_directory() . '/customizations/page-seo.php' );
+include_once( get_template_directory() . '/customizations/testimonials.php' );
+include_once( get_template_directory() . '/customizations/testimonial-fields.php' );

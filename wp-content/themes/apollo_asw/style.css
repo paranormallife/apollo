@@ -16,14 +16,11 @@ Text Domain:
 :root {
     --heading: 'Righteous';
     --sans-serif: 'Roboto';
-    --serif: 'Roboto+Serif';
+    --serif: 'Roboto Serif';
     --cyan: #00D1FF;
     --gold: #FFD600;
-    --desktop: 70rem;
-    --tablet: 50rem;
-    --mobile: 30rem;
-    --page: 55rem;
-
+    --slim: 40rem;
+    --desktop: 80rem;
 }
 
 * {
