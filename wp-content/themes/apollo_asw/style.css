@@ -1,0 +1,82 @@
+/*
+Theme Name: Apollo 2022
+Theme URI:
+Author: Elliot Toman
+Author URI: https://www.asubtleweb.com
+Description: Custom theme for Apollo Seamless Gutters
+Version: 1.0
+License: 
+License URI: 
+Tags: 
+Text Domain: 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto+Serif:ital,opsz@1,8..144&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --heading: 'Righteous';
+    --sans-serif: 'Roboto';
+    --serif: 'Roboto+Serif';
+    --cyan: #00D1FF;
+    --gold: #FFD600;
+    --desktop: 70rem;
+    --tablet: 50rem;
+    --mobile: 30rem;
+    --page: 55rem;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.asw .has-white-color { color: white; }
+.asw .has-white-background-color { background-color: white; }
+.asw .has-black-color { color: black; }
+.asw .has-black-background-color { background-color: black; }
+.asw .has-cyan-color { color: var(--cyan); }
+.asw .has-cyan-background-color { background-color: var(--cyan); }
+.asw .has-gold-color { color: var(--gold); }
+.asw .has-gold-background-color { background-color: var(--gold); }
+
+/* Full width video embeds */
+.is-type-video .wp-block-embed__wrapper {
+    height: 0;
+    padding-top: 60%;
+    position: relative;
+    width: 100%;
+}
+
+.is-type-video .wp-block-embed__wrapper iframe {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+@media screen and ( max-width: 781px ) {
+    .asw .wp-block-columns {
+        display: block;
+    }
+
+    .asw .wp-block-column {
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and ( min-width: 600px ) and ( max-width: 781px ) {
+    .asw .wp-block-column:nth-child(2n) {
+        margin-left: 0;
+    }
+}
+
+
+
