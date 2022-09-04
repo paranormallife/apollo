@@ -5,6 +5,11 @@
 		element.classList.toggle("menu-active");
 	}
 
+	// Child Menus Toggle
+	jQuery( '.menu-item-has-children' ).on( 'click', function() {
+			jQuery( this ).toggleClass( 'active' );
+	});
+
 </script>
 
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

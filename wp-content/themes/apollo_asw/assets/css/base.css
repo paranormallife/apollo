@@ -48,6 +48,70 @@ p {
     width: 100vw;
 }
 
+.header-areas .secondary {
+    color: white;
+    background-color: black;
+}
+
+.header-areas .secondary .grid {
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding: 1rem 0;
+}
+
+.header-areas .secondary a {
+    color: white;
+}
+
+.header-areas .secondary .location {
+    text-align: right;
+}
+
+.header-areas .secondary ion-icon {
+    font-size: 1.5rem;
+    transform: translateY(0.25rem);
+}
+
+.header-areas .primary {
+    background-color: var(--cyan);
+}
+
+.header-areas .primary .grid {
+    align-items: center;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+}
+
+.header-areas .primary .grid a {
+    color: black;
+}
+
+.wordmark {
+    font: normal 1rem/1 var(--heading);
+    padding: 1rem 0;
+    text-transform: uppercase;
+}
+
+.wordmark span {
+    color: white;
+}
+
+.header-areas .graphic {
+    align-self: end;
+    justify-self: center;
+}
+
+.menu-toggle {
+    align-self: center;
+    font-size: 2.5rem;
+    line-height: 0;
+}
+
+#body:not(.menu-active) .menu-toggle .menu-close, #body.menu-active .menu-toggle .menu-open {
+    display: none;
+}
+
 /* Mobile Only Styles */
 @media screen and ( max-width: 767px ) {
     .phone .text {
