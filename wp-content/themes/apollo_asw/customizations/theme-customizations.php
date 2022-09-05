@@ -9,7 +9,7 @@ function asw_customize_register( $wp_customize ) {
     ) );
 
     $wp_customize->add_panel( 'homepage', array(
-        'priority'       => 1,
+        'priority'       => 2,
         'title'          => 'Homepage Sections',
     ) );
             
@@ -54,6 +54,36 @@ function asw_customize_register( $wp_customize ) {
         'label'      => 'Wordmark',
         'section'    => 'defaults',
         'type'       => 'textarea',
+    ) );
+
+    $wp_customize->add_setting( 'address');
+    $wp_customize->add_control( 'address', array(
+        'label'      => 'Address',
+        'section'    => 'defaults',
+        'type'       => 'textarea',
+        'description' => 'Displayed in the footer and on the Contact page.'
+    ) );
+    
+    $wp_customize->add_setting( 'email');
+    $wp_customize->add_control( 'email', array(
+        'label'      => 'Contact Email',
+        'section'    => 'defaults',
+        'type'       => 'text',
+    ) );
+    
+    $wp_customize->add_setting( 'reviews_link');
+    $wp_customize->add_control( 'reviews_link', array(
+        'label'      => 'Reviews Link',
+        'section'    => 'defaults',
+        'type'       => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'google-map');
+    $wp_customize->add_control( 'google-map', array(
+        'label'      => 'Google Map Embed Code',
+        'section'    => 'defaults',
+        'type'       => 'textarea',
+        'description' => 'Displayed on the Contact page.'
     ) );
 
     /* Homepage CTA Button ----------------------------- */
@@ -122,7 +152,6 @@ function asw_customize_register( $wp_customize ) {
         'section'    => 'homepage-services',
         'type'       => 'image'
     ) ) );
-
     
 
     }

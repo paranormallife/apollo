@@ -9,8 +9,9 @@
         min-width: 200px;
     }
     
-    .wordmark {
-        font-size: 1.5rem;
+    .wordmark,
+    .wordmark h1 {
+        font-size: 3rem;
     }
 
     .testimonials-carousel {
@@ -50,6 +51,32 @@
     .page-content h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
+    }
+
+    .footer-columns {
+        justify-content: center;
+        display: flex;
+        margin: 0 auto;
+    }
+    
+    .footer-menu ul {
+        column-count: 2;
+    }
+    
+    .footer-column-2 {
+        margin-left: 2rem;
+    }
+    
+    footer {
+        padding: 2rem 0;
+    }
+
+    .page-content h1 {
+        font-size: 3rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
     }
     
 }

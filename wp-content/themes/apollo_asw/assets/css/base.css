@@ -15,12 +15,12 @@ header {
 }
 
 a {
-    color: var(--cyan);
+    color: var(--links);
     text-decoration: none;
 }
 
 a:hover {
-    color: var(--cyan);
+    color: var(--links);
 }
 
 p {
@@ -82,14 +82,23 @@ p {
     grid-template-columns: auto 1fr auto;
 }
 
-.header-areas .primary .grid a {
+.navigation a {
     color: black;
 }
 
+.navigation .current-menu-item a {
+    color: var(--cyan);
+}
+
 .wordmark {
+    color: black;
     font: normal 1rem/1 var(--heading);
     padding: 1rem 0;
     text-transform: uppercase;
+}
+
+.wordmark a {
+    color: black;
 }
 
 .wordmark span {
@@ -225,12 +234,12 @@ p {
     z-index: 1;
 }
 
-.testimonial-slide .attribution {
+.attribution {
     font: italic 1rem var(--serif);
     margin-top: 1rem;
 }
 
-.testimonial-slide .attribution .location {
+.attribution .location {
     color: rgba(0,0,0,0.5);
 }
 
@@ -303,8 +312,12 @@ p {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     text-transform: uppercase;
+}
+
+.homepage-services a:hover .title {
+    background-color: black;
 }
 
 main.homepage {
@@ -317,15 +330,123 @@ main.homepage {
     max-width: var(--slim);
 }
 
-.page-content h3 {
-    font: italic 1.25rem/1 var(--serif);
-    margin-bottom: 0.5rem;
+.page-content h1 {
+    font: normal 2rem/1 var(--heading);
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .page-content h2 {
     font: normal 1.5rem var(--heading);
     margin-bottom: 0.5rem;
     text-transform: uppercase;
+}
+
+.page-content h3 {
+    font: italic 1.25rem/1 var(--serif);
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    background-color: var(--cyan);
+    padding: 1rem 0;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover {
+    color: white;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+footer h2 {
+    font: normal 1rem var(--heading);
+    text-transform: uppercase;
+}
+
+.footer-columns {
+    line-height: 2;
+}
+
+.footer-columns > div {
+    margin-bottom: 1rem;
+}
+
+.subfooter {
+    background-color: black;
+    color: white;
+    line-height: 2;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.subfooter a {
+    color: var(--gold);
+}
+
+.subfooter ul {
+    list-style-type: none;
+}
+
+.copyright,
+.subfooter-links,
+.subfooter-links li {
+    display: inline-block;
+}
+
+.subfooter-links li {
+    color: var(--cyan);
+}
+
+.subfooter-links li:before {
+    content: '|';
+    margin: 0 0.5rem;
+}
+
+.page-content a {
+    font-weight: bold;
+}
+
+.page-content a:hover {
+    border-bottom: 1px solid black;
+}
+
+main.single-page {
+    padding: 2rem 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+.testimonial-card {
+    background-color: #fafafa;
+    border-radius: 1rem;
+    box-shadow: -2px 2px 0 rgba(0,0,0,0.05);
+    padding: 1rem;
+}
+
+.map-embed {
+    height: 0;
+    padding-top: 300px;
+    position: relative;
+    width: 100%;
+}
+
+.map-embed iframe {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 /* Mobile Only Styles */

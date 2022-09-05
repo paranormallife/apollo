@@ -57,4 +57,21 @@
         grid-gap: 2rem;
     }
 
+    .testimonials-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .navigation .current-menu-item a,
+    .navigation .current-menu-parent > a {
+        color: white;
+    }
+
+    .navigation .sub-menu .current-menu-item a {
+        color: var(--cyan);
+    }
+
+    .map-embed {
+        padding-top: 600px;
+    }
+
 }

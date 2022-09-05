@@ -15,27 +15,27 @@ add_action( 'init', 'register_my_menus' );
 function register_my_menus() {
 	register_nav_menus(
 		array(
-			'nav1' => __( 'Main Navigation' )
+			'nav1' => __( 'Main Navigation' ),
+			'nav2' => __( 'Footer Menu' ),
 		)
 	);
 }
  
-
+/*
 function asw_widgets_init() {
 
-	/*
 	register_sidebar( array(
-		'name'          => 'Footer Line 1',
-		'id'            => 'footer_line_1',
+		'name'          => 'Footer Column 1',
+		'id'            => 'footer_column_1',
 		'before_widget' => '',
 		'after_widget'  => '',
 		'before_title'  => '<div class="heading">',
 		'after_title'   => '</div>'
 	) );
-	*/
 
 }
 add_action( 'widgets_init', 'asw_widgets_init' );
+*/
 
 function mytheme_setup() {
     // Add support for Block Styles
