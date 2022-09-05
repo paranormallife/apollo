@@ -332,6 +332,7 @@ main.homepage {
 
 .page-content h1 {
     font: normal 2rem/1 var(--heading);
+    margin-bottom: 2rem;
     text-align: center;
     text-transform: uppercase;
 }
@@ -447,6 +448,54 @@ main.single-page {
     position: absolute;
     top: 0;
     width: 100%;
+}
+
+.contact-form input,.contact-form textarea {
+    border: 1px solid var(--cyan);
+    border-radius: 0;
+    font: normal 1rem/1 var(--sans-serif);
+    display: block;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border: 1px solid var(--gold);
+    outline: none;
+}
+
+.contact-form label {
+    font: italic 1rem var(--serif);
+}
+
+.contact-form textarea {
+    max-height: 4rem;
+}
+
+.contact-form .required {
+    color: red;
+}
+
+.contact-form select {
+    border: 1px solid var(--cyan);
+    border-radius: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.contact-form input[type=submit] {
+    background-color: var(--cyan);
+    border: 0;
+    border-radius: 1rem;
+    cursor: pointer;
+    float: right;
+    padding: 0.5rem 2rem;
+    text-transform: uppercase;
+    width: auto;
+}
+
+.contact-form input[type=submit]:hover {
+    background-color: var(--gold);
 }
 
 /* Mobile Only Styles */
