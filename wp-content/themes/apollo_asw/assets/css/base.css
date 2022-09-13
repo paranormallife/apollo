@@ -498,6 +498,35 @@ main.single-page {
     background-color: var(--gold);
 }
 
+.lightbox-gallery {
+    column-count: 2;
+    column-gap: 1rem;
+}
+
+.lightbox-gallery .thumbnail {
+    background-position: center;
+    background-size: cover;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.lightbox-gallery .thumbnail img {
+    opacity: 0;
+}
+
+.lightbox-gallery .thumbnail:hover {
+    opacity: 0.9;
+}
+
+.page-content ul, .page-content ol {
+    margin: 1.25rem;
+}
+
+.page-content li {
+    margin-bottom: 1rem;
+}
+
 /* Mobile Only Styles */
 @media screen and ( max-width: 767px ) {
     .phone .text {
