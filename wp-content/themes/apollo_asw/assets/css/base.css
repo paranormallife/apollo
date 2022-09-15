@@ -283,19 +283,38 @@ p {
 }
 
 .homepage-cta {
+    background-color: var(--gold);
     display: table;
-    margin: 1rem auto;
+    margin: 1rem 0 1rem 50%;
+    padding: 2rem 0;
+    text-align: center;
+    transform: translateX(-50%);
+    width: 100vw;
 }
 
-.homepage-cta a {
+a.button {
     display: block;
     background-color: var(--gold);
     border-radius: 1rem;
-    box-shadow: -2px 2px 0 black;
     color: black;
     padding: 1rem;
     text-align: center;
-    transition: all 500ms linear 0s;
+    transition: all 250ms linear 0s;
+}
+
+a.button:hover {
+    background-color: black;
+    color: white;
+}
+
+.homepage-cta a.button {
+    background-color: white;
+    color: black;
+}
+
+.homepage-cta a.button:hover {
+    background-color: black;
+    color: white;
 }
 
 .homepage-cta .line-1 {
@@ -313,19 +332,16 @@ p {
     text-transform: uppercase;
 }
 
-.homepage-cta .phone {
-    color: rgba(0,0,0,0.5);
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-.homepage-cta .phone ion-icon {
+.homepage-cta ion-icon {
     transform: translateY(0.15em);
 }
 
-.homepage-cta a:hover {
-    box-shadow: -4px 4px 0 black;
-    transform: translate(3px, -3px);
+.homepage-cta .columns {
+    align-items: center;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    margin-top: 1rem;
 }
 
 .homepage-services {
@@ -367,6 +383,7 @@ main.homepage {
     margin-left: auto;
     margin-right: auto;
     max-width: var(--slim);
+    width: calc( 100% - 2rem );
 }
 
 .page-content h1 {

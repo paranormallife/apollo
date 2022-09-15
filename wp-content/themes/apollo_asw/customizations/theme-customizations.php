@@ -116,6 +116,13 @@ function asw_customize_register( $wp_customize ) {
         'type'       => 'text',
     ) );
 
+    $wp_customize->add_setting( 'homepage_cta_contact' );
+    $wp_customize->add_control( 'homepage_cta_contact', array(
+        'label'      => 'Contact Link',
+        'section'    => 'homepage-cta',
+        'type'       => 'text',
+    ) );
+
     /* Homepage Services ----------------------------- */
 
     $wp_customize->add_setting( 'homepage_service_1' );

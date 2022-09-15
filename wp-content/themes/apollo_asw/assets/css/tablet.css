@@ -33,8 +33,24 @@
         font-size: 2rem;
     }
 
-    .homepage-cta a {
+    a.button {
         padding: 1rem 3rem;
+    }
+
+    .homepage-cta .line-1 {
+        font-size: 1.5rem;
+    }
+    
+    .homepage-cta .line-2 {
+        font-size: 1.25rem;
+    }
+    
+    .homepage-cta .line-3 {
+        font-size: 2rem;
+    }
+
+    .homepage-cta .columns {
+        grid-template-columns: 1fr 1fr;
     }
 
     .homepage-services {
