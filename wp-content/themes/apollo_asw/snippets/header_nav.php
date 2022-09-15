@@ -5,6 +5,13 @@
     $name = get_bloginfo('name');
     $wpurl = get_bloginfo('wpurl');
     $theme = get_stylesheet_directory_uri();
+    $default_hero = get_theme_mod('default_hero');
+    $featured_image = get_the_post_thumbnail_url( $post->ID, 'full' );
+    if( $featured_image ) {
+        $hero = $featured_image;
+    } else {
+        $hero = $default_hero;
+    }
 ?>
 
 <div class="header-areas">
@@ -17,11 +24,15 @@
                 </a>
             </div>
             <div class="location">
-                <span class="text"><?= $location; ?></span>
+                <a href="<?= $wpurl; ?>/contact">
+                    <span class="text"><?= $location; ?></span>
+                </a>
             </div>
         </div>
     </div>
     <div class="primary">
+        <div class="hero-image" style="background-image: url('<?= $hero; ?>');">&nbsp;</div>
+        <div class="hero-overlay">&nbsp;</div>
         <div class="grid page-width">
             <div class="wordmark">
                 <a href="<?= $wpurl; ?>" title="Homepage">
@@ -29,9 +40,6 @@
                         <?= $wordmark; ?>
                     <?php if( is_front_page() ) : ?></h1><?php endif; ?>
                 </a>
-            </div>
-            <div class="graphic">
-                <img src="<?= $theme; ?>/assets/images/asg-icon.svg" />
             </div>
             <div class="menu-toggle" onclick="menuToggle()">
                 <div class="menu-open"><ion-icon name="menu"></ion-icon></div>

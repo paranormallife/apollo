@@ -7,6 +7,7 @@
     .navigation {
         background-color: transparent;
         height: auto;
+        overflow: visible;
         padding: 0;
         position: static;
         width: 100%;

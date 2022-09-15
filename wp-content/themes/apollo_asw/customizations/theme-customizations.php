@@ -86,6 +86,13 @@ function asw_customize_register( $wp_customize ) {
         'description' => 'Displayed on the Contact page.'
     ) );
 
+    $wp_customize->add_setting( 'default_hero' );
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'default_hero', array(
+        'label'      => 'Default Hero Image',
+        'section'    => 'defaults',
+        'type'       => 'image'
+    ) ) );
+
     /* Homepage CTA Button ----------------------------- */
 
     $wp_customize->add_setting( 'homepage_cta_line_1' );

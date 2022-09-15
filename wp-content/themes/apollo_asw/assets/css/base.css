@@ -73,13 +73,48 @@ p {
 }
 
 .header-areas .primary {
+    align-items: end;
     background-color: var(--cyan);
+    display: grid;
+    height: 100vw;
+    max-height: 400px;
+    position: relative;
+}
+
+.home .header-areas .primary {
+    max-height: 600px;
+}
+
+.hero-image {
+    background-position: center;
+    background-size: cover;
+    filter: grayscale(100);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    opacity: 0.5;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.hero-overlay {
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
 }
 
 .header-areas .primary .grid {
     align-items: center;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
+    position: relative;
+    z-index: 2;
 }
 
 .navigation a {
@@ -90,9 +125,11 @@ p {
     color: var(--cyan);
 }
 
-.wordmark {
+.wordmark,
+.wordmark h1 {
     color: black;
-    font: normal 1rem/1 var(--heading);
+    font: normal 2rem/1 var(--heading);
+    margin: 0;
     padding: 1rem 0;
     text-transform: uppercase;
 }
@@ -103,6 +140,7 @@ p {
 
 .wordmark span {
     color: white;
+    text-shadow: 2px 2px 0 var(--cyan);
 }
 
 .header-areas .graphic {
@@ -126,7 +164,8 @@ p {
     height: 100vh;
     left: 0;
     width: 75%;
-    padding: 1rem;
+    overflow-y: auto;
+    padding: 1rem 1rem 6rem 1rem;
     position: absolute;
     top: 0;
     transition: left 500ms ease-in-out 0s;
@@ -139,7 +178,7 @@ p {
 }
 
 .navigation ul {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     list-style-type: none;
     margin: 0;
 }
