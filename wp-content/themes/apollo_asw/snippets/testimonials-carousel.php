@@ -37,6 +37,9 @@ $the_query = new WP_Query( array(
         <?php endwhile; ?>
         <?php wp_reset_postdata(); ?>
     </div>
+    <div class="reviews-link">
+        <a class="button" target="_blank" href="<?= get_theme_mod('reviews_link'); ?>">Leave a Review</a>
+    </div>
  <?php endif; ?>
 
  <script>

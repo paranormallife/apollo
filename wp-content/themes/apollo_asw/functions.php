@@ -17,6 +17,7 @@ function register_my_menus() {
 		array(
 			'nav1' => __( 'Main Navigation' ),
 			'nav2' => __( 'Footer Menu' ),
+			'nav3' => __( 'Quicklinks' ),
 		)
 	);
 }
@@ -61,6 +62,16 @@ function mytheme_setup() {
 			'name' => __( 'Gold' ),
 			'slug' => 'gold',
 			'color' => '#FFD600',
+		),
+		array(
+			'name' => __( 'Gray' ),
+			'slug' => 'gray',
+			'color' => '#EDEDED',
+		),
+		array(
+			'name' => __( 'Red' ),
+			'slug' => 'red',
+			'color' => '#ff3300',
 		)
 	) );
 	add_theme_support( 'disable-custom-colors' );

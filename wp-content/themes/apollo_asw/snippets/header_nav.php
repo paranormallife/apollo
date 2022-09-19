@@ -15,7 +15,7 @@
 ?>
 
 <div class="header-areas">
-    <div class="secondary">
+    <div class="sticky">
         <div class="grid page-width">
             <div class="phone">
                 <a href="tel:<?= $phone; ?>">
@@ -25,15 +25,25 @@
             </div>
             <div class="location">
                 <a href="<?= $wpurl; ?>/contact">
+                    <span class="icon"><ion-icon name="location"></ion-icon></span>
                     <span class="text"><?= $location; ?></span>
                 </a>
             </div>
+            <div class="menu-toggle" onclick="menuToggle()">
+                <div class="menu-open"><ion-icon name="menu"></ion-icon></div>
+                <div class="menu-close"><ion-icon name="close"></ion-icon></div>
+                <span class="label">Menu</span>
+            </div>
         </div>
     </div>
-    <div class="primary">
+    <div class="navigation">
+        <div class="main-menu-container page-width">
+            <?php wp_nav_menu( array( 'theme_location' => 'nav1' ) ); ?>
+        </div>
+    </div>
+    <div class="hero">
         <div class="hero-image" style="background-image: url('<?= $hero; ?>');">&nbsp;</div>
-        <div class="hero-overlay">&nbsp;</div>
-        <div class="grid page-width">
+        <div class="page-width header-bottom">
             <div class="wordmark">
                 <a href="<?= $wpurl; ?>" title="Homepage">
                     <?php if( is_front_page() ) : ?><h1><?php endif; ?>
@@ -41,12 +51,8 @@
                     <?php if( is_front_page() ) : ?></h1><?php endif; ?>
                 </a>
             </div>
-            <div class="menu-toggle" onclick="menuToggle()">
-                <div class="menu-open"><ion-icon name="menu"></ion-icon></div>
-                <div class="menu-close"><ion-icon name="close"></ion-icon></div>
-            </div>
-            <div class="navigation">
-                <?php wp_nav_menu( array( 'theme_location' => 'nav1' ) ); ?>
+            <div class="quicklinks">
+                <?php wp_nav_menu( array( 'theme_location' => 'nav3' ) ); ?>
             </div>
         </div>
     </div>

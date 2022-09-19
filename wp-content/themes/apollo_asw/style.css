@@ -20,6 +20,8 @@ Text Domain:
     --cyan: #00D1FF;
     --gold: #FFD600;
     --links: #00B0D7;
+    --gray: #EDEDED;
+    --red: #ff3300;
     --slim: 40rem;
     --desktop: 80rem;
 }
@@ -44,6 +46,10 @@ img {
 .asw .has-cyan-background-color { background-color: var(--cyan); }
 .asw .has-gold-color { color: var(--gold); }
 .asw .has-gold-background-color { background-color: var(--gold); }
+.asw .has-gray-color { color: var(--gray); }
+.asw .has-gray-background-color { background-color: var(--gray); }
+.asw .has-red-color { color: var(--red); }
+.asw .has-red-background-color { background-color: var(--red); }
 
 /* Full width video embeds */
 .is-type-video .wp-block-embed__wrapper {

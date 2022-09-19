@@ -1,17 +1,48 @@
 @media screen and ( min-width: 768px ) {
 
-    .header-areas .secondary {
-        font-size: 1.25rem;
+    header .navigation ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1rem 0;
     }
 
-    .header-areas .primary .graphic img {
-        margin-top: 1rem;
-        min-width: 200px;
+    header .navigation ul a {
+        display: block;
+        background-color: white;
+        border-radius: 1rem;
+        margin: 0.5rem 1rem 0.5rem 0;
+        padding: 0.5em 1em;
     }
-    
+
+    .wordmark {
+        margin-top: -3rem;
+        padding: 0;
+    }
+
     .wordmark,
     .wordmark h1 {
-        font-size: 3rem;
+        line-height: 1;
+        display: block;
+    }
+
+    .wordmark span {
+        display: block;
+        padding: 0;
+    }
+
+    .header-bottom {
+        align-items: end;
+        display: grid;
+        grid-gap: 0;
+        grid-template-columns: 1fr auto;
+    }
+
+    header .quicklinks a {
+        margin-left: 1rem;
+    }
+
+    header .quicklinks ul {
+        padding: 0;
     }
 
     .testimonials-carousel {
