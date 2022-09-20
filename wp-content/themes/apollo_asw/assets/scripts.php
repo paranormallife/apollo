@@ -5,6 +5,14 @@
 		element.classList.toggle("menu-active");
 	}
 
+
+
+	// Close menu on menu item click
+	jQuery( '.menu-item' ).on( 'click', function() {
+			var element = document.getElementById("body");
+			element.classList.remove("menu-active");
+	});
+
 	// Child Menus Toggle
 	jQuery( '.menu-item-has-children' ).on( 'click', function() {
 			jQuery( this ).toggleClass( 'active' );
