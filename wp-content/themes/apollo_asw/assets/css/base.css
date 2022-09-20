@@ -152,10 +152,17 @@ p {
 }
 
 header .navigation {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(255,255,255,0.85);
     max-height: 0;
     overflow: hidden;
+    position: fixed;
     transition: max-height 2s ease-in-out 0s;
+    width: 100%;
+}
+
+.main-menu-container {
+    max-height: calc( 100vh - 6rem );
+    overflow-y: auto;
 }
 
 header .navigation ul {
