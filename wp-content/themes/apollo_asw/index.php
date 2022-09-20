@@ -8,7 +8,7 @@
         <?php get_template_part('snippets/testimonials-carousel'); ?>
         <?php get_template_part('snippets/homepage-cta'); ?>
         <main class="homepage">
-            <div class="page-content slim">
+            <div class="page-content">
                 <?php the_content(); ?>
             </div>
         </main>
