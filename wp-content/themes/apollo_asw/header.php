@@ -8,7 +8,7 @@
 <?php get_template_part('snippets/header_meta') ?>
 
 <?php 
-  $styleSheetHash = '?v=006';
+  $styleSheetHash = '?v=007';
   $theme = get_stylesheet_directory_uri();
 ?>
 
