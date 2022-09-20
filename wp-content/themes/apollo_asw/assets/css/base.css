@@ -505,7 +505,7 @@ main.single-page {
 
 .map-embed {
     height: 0;
-    padding-top: 300px;
+    padding-top: 100vw;
     position: relative;
     width: 100%;
 }
