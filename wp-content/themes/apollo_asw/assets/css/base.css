@@ -595,6 +595,12 @@ main.single-page {
     margin-bottom: 1rem;
 }
 
+.asw a.wp-block-button__link:hover {
+    background-color: black;
+    box-shadow: none;
+    color: white;
+}
+
 /* Mobile Only Styles */
 @media screen and ( max-width: 767px ) {
     .sticky .text {
