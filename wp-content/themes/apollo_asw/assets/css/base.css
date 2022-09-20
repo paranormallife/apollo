@@ -597,9 +597,9 @@ main.single-page {
 }
 
 .asw a.wp-block-button__link:hover {
-    background-color: black;
+    background-color: black !important;
     box-shadow: none;
-    color: white;
+    color: white !important;
 }
 
 /* Mobile Only Styles */
