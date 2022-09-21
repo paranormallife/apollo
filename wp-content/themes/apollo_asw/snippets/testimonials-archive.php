@@ -4,9 +4,19 @@ $the_query = new WP_Query( array(
     'posts_per_page' => -1,
     'orderby' => 'menu_order',
     'order' => 'ASC'
-) ); ?>
+) ); 
+$leave_a_review = get_theme_mod('reviews_link');
+$reviews_intro = get_theme_mod('reviews_intro');
+?>
 
 <main class="page-content single-page">
+    <h1>Testimonials</h1>
+    <div class="slim">
+        <?= $reviews_intro; ?>
+        <p>
+            <a href="<?= $leave_a_review; ?>" class="button">Leave a Review</a>
+        </p>
+    </div>
     <?php if ( $the_query->have_posts() ) : ?>
         <div class="testimonials-grid">
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>

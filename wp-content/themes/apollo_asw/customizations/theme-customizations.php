@@ -77,6 +77,13 @@ function asw_customize_register( $wp_customize ) {
         'section'    => 'defaults',
         'type'       => 'text',
     ) );
+    
+    $wp_customize->add_setting( 'reviews_intro');
+    $wp_customize->add_control( 'reviews_intro', array(
+        'label'      => 'Reviews Intro',
+        'section'    => 'defaults',
+        'type'       => 'textarea',
+    ) );
 
     $wp_customize->add_setting( 'google-map');
     $wp_customize->add_control( 'google-map', array(
