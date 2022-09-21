@@ -13,6 +13,12 @@
             </div>
         </main>
     <?php elseif( is_archive('testimonials') ) : ?>
+        <?php $leave_a_review = get_theme_mod('reviews_link'); ?>
+        <h1><?php the_title(); ?></h1>
+        <?php the_content(); ?>
+        <p>
+            <a href="<?= $leave_a_review; ?>" class="button">Leave a Review</a>
+        </p>
         <?php get_template_part('snippets/testimonials-archive'); ?>
     <?php else : ?>
         <main class="single-page">
