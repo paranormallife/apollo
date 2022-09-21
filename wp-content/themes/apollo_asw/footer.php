@@ -11,7 +11,7 @@
 <footer>
     <div class="page-width footer-columns">
         <div class="footer-column-1">
-            <h2>Apollo Seamless Gutters</h2>
+            <h2><?= $name; ?></h2>
             <div class="addresss"><?= $address; ?></div>
             <div class="phone"><a href="tel:<?= $phone; ?>"><?= $phone; ?></a></div>
             <div class="email"><a href="mailto:<?= $email; ?>"><?= $email; ?></a></div>
