@@ -400,9 +400,10 @@ main.homepage {
 }
 
 .page-content h1 {
+    color: var(--cyan);
     font: normal 2rem/1 var(--heading);
     margin-bottom: 2rem;
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
 }
 
