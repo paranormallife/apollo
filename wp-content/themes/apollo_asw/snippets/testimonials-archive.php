@@ -14,7 +14,7 @@ $reviews_intro = get_theme_mod('reviews_intro');
     <div class="slim">
         <?= $reviews_intro; ?>
         <p>
-            <a href="<?= $leave_a_review; ?>" class="button">Leave a Review</a>
+            <a href="<?= $leave_a_review; ?>" class="button" target="_blank">Leave a Review</a>
         </p>
     </div>
     <?php if ( $the_query->have_posts() ) : ?>
