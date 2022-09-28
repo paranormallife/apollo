@@ -13,6 +13,18 @@ $the_query = new WP_Query( array(
             $review = get_post_meta( $post->ID, 'review', true );
             $rating = get_post_meta( $post->ID, 'rating', true );
             $location = get_post_meta( $post->ID, 'location', true );
+            $source_name = get_post_meta( $post->ID, 'source_name', true );
+            if( $source_name ) {
+                $source = $source_name;
+            } else {
+                $source = 'HomeAdvisor';
+            }
+            $source_url = get_post_meta( $post->ID, 'source_url', true );
+            if( $source_url ) {
+                $link = $source_url;
+            } else {
+                $link = 'https://www.homeadvisor.com/rated.APOLLOSEAMLESSGUTTERS.116191157.html';
+            }
         ?>
         <div class="testimonial-slide">
             <?php if( $rating != 'None' ) : ?>
@@ -33,12 +45,16 @@ $the_query = new WP_Query( array(
                     <span class="location"> <?= $location; ?></span>
                 <?php endif; ?>
             </div>
+            <div class="source">
+                Source: <a href="<?= $link; ?>" target="_blank"><?= $source; ?></a>
+            </div>
         </div>
         <?php endwhile; ?>
         <?php wp_reset_postdata(); ?>
     </div>
-    <div class="reviews-link">
-        <a class="button" target="_blank" href="<?= get_theme_mod('reviews_link'); ?>">Leave a Review</a>
+    <div class="reviews-links">
+        <a class="button gold" target="_blank" href="<?= get_theme_mod('wpurl'); ?>/testimonials">More Reviews</a>
+        <a class="button cyan" target="_blank" href="<?= get_theme_mod('reviews_link'); ?>">Leave a Review</a>
     </div>
  <?php endif; ?>
 

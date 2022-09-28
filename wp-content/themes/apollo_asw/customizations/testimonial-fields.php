@@ -32,6 +32,16 @@ class testimonialfieldsMetabox {
 			'id' => 'location',
 			'type' => 'text',
 		),
+		array(
+			'label' => 'Source',
+			'id' => 'source_name',
+			'type' => 'text',
+		),
+		array(
+			'label' => 'Source URL',
+			'id' => 'source_url',
+			'type' => 'text',
+		),
 	);
 
 	public function __construct() {
