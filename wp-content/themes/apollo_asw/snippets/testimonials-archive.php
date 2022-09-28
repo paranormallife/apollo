@@ -24,6 +24,19 @@ $reviews_intro = get_theme_mod('reviews_intro');
                 $review = get_post_meta( $post->ID, 'review', true );
                 $rating = get_post_meta( $post->ID, 'rating', true );
                 $location = get_post_meta( $post->ID, 'location', true );
+                $location = get_post_meta( $post->ID, 'location', true );
+                $source_name = get_post_meta( $post->ID, 'source_name', true );
+                if( $source_name ) {
+                    $source = $source_name;
+                } else {
+                    $source = 'HomeAdvisor';
+                }
+                $source_url = get_post_meta( $post->ID, 'source_url', true );
+                if( $source_url ) {
+                    $link = $source_url;
+                } else {
+                    $link = 'https://www.homeadvisor.com/rated.APOLLOSEAMLESSGUTTERS.116191157.html';
+                }
             ?>
             <div class="testimonial-card">
                 <?php if( $rating != 'None' ) : ?>
@@ -43,6 +56,9 @@ $reviews_intro = get_theme_mod('reviews_intro');
                     <?php if( $location ) : ?>
                         <span class="location"> <?= $location; ?></span>
                     <?php endif; ?>
+                </div>
+                <div class="source">
+                    Source: <a href="<?= $link; ?>" target="_blank"><?= $source; ?></a>
                 </div>
             </div>
             <?php endwhile; ?>

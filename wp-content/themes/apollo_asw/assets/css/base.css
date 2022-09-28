@@ -321,6 +321,11 @@ a.button {
     transition: all 250ms linear 0s;
 }
 
+a.button.cyan {
+    background-color: var(--cyan);
+    color: white;
+}
+
 a.button:hover {
     background-color: black;
     color: white;
@@ -607,6 +612,17 @@ main.single-page {
     background-color: black !important;
     box-shadow: none;
     color: white !important;
+}
+
+.reviews-links {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
+    justify-content: center;
+}
+
+.source {
+    margin: 1rem 0;
 }
 
 /* Mobile Only Styles */
