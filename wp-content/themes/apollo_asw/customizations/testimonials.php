@@ -38,7 +38,7 @@ function create_testimonial_cpt() {
 		'labels' => $labels,
 		'menu_icon' => 'dashicons-star-filled',
 		'supports' => array('title'),
-		'taxonomies' => array(),
+		'taxonomies' => array('category'),
 		'public' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
