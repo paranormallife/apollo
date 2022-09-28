@@ -1,9 +1,10 @@
 <?php 
 $the_query = new WP_Query( array(
     'post_type' => 'testimonials',
-    'posts_per_page' => 10,
+    'posts_per_page' => 99,
     'orderby' => 'menu_order',
-    'order' => 'ASC'
+    'order' => 'DESC',
+    'category_name' => 'carousel'
 ) ); ?>
  
 <?php if ( $the_query->have_posts() ) : ?>
