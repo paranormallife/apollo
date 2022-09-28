@@ -53,7 +53,7 @@ $the_query = new WP_Query( array(
         <?php wp_reset_postdata(); ?>
     </div>
     <div class="reviews-links">
-        <a class="button gold" target="_blank" href="<?= get_theme_mod('wpurl'); ?>/testimonials">More Reviews</a>
+        <a class="button gold" href="<?= get_theme_mod('wpurl'); ?>/testimonials">More Reviews</a>
         <a class="button cyan" target="_blank" href="<?= get_theme_mod('reviews_link'); ?>">Leave a Review</a>
     </div>
  <?php endif; ?>
