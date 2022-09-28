@@ -12,6 +12,7 @@
     } else {
         $hero = $default_hero;
     }
+    $hero_video = get_post_meta( $post->ID, 'video', true );
 ?>
 
 <div class="header-areas">
@@ -42,7 +43,11 @@
         </div>
     </div>
     <div class="hero">
-        <div class="hero-image" style="background-image: url('<?= $hero; ?>');">&nbsp;</div>
+        <div class="hero-image" style="background-image: url('<?= $hero; ?>');">
+            <?php if( $hero_video ) : ?>
+                <video autoplay loop muted preload="auto" playsinline src="<?= $hero_video; ?>"></video>
+            <?php endif; ?>
+        </div>
         <div class="page-width header-bottom">
             <div class="wordmark">
                 <a href="<?= $wpurl; ?>" title="Homepage">
