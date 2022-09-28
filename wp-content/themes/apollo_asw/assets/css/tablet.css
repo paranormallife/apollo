@@ -37,10 +37,6 @@
         grid-template-columns: 1fr auto;
     }
 
-    header .quicklinks a {
-        margin-left: 1rem;
-    }
-
     header .quicklinks ul {
         padding: 0;
     }

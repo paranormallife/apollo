@@ -188,11 +188,16 @@ header .navigation ul a:hover {
     max-height: 99999px;
 }
 
+header .quicklinks {
+    overflow-x: auto;
+}
+
 header .quicklinks ul {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1rem;
     list-style-type: none;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
 }
 
 header .quicklinks ul a {
@@ -203,6 +208,7 @@ header .quicklinks ul a {
     display: flex;
     height: 2rem;
     padding: 0 1rem;
+    white-space: nowrap;
 }
 
 header .quicklinks ul a:hover {
