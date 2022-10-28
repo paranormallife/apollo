@@ -648,6 +648,10 @@ main.single-page {
     text-align: center;
 }
 
+.reviews-plugin {
+    margin-top: 2rem;
+}
+
 /* Mobile Only Styles */
 @media screen and ( max-width: 767px ) {
     .sticky .text {
