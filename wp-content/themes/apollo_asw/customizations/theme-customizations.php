@@ -30,6 +30,11 @@ function asw_customize_register( $wp_customize ) {
         'title'             => 'Homepage Services',
         'panel'             => 'homepage',
     ) );
+    
+    $wp_customize->add_section( 'homepage-reviews' , array(
+        'title'             => 'Homepage Reviews',
+        'panel'             => 'homepage',
+    ) );
 
             
     // Defaults ----------------------------------------------
@@ -173,6 +178,15 @@ function asw_customize_register( $wp_customize ) {
         'section'    => 'homepage-services',
         'type'       => 'image'
     ) ) );
+
+    // Homepage Reviews Carousel -------------------------- //
+
+    $wp_customize->add_setting( 'reviews_shortcode' );
+    $wp_customize->add_control( 'reviews_shortcode', array(
+        'label'      => 'Reviews Shortcode',
+        'section'    => 'homepage-reviews',
+        'type'       => 'text',
+    ) );
     
 
     }

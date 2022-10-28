@@ -5,7 +5,14 @@
 <div class="page-width">
 
     <?php if( is_front_page() ) : ?>
-        <?php get_template_part('snippets/testimonials-carousel'); ?>
+        <?php
+            $shortcode = get_theme_mod('reviews_shortcode');
+            if( $shortcode ) {
+                echo '<div class="reviews-plugin">' . $shortcode . '</div>';
+            } else {
+                get_template_part('snippets/testimonials-carousel'); 
+            }
+        ?>
         <?php get_template_part('snippets/homepage-cta'); ?>
         <main class="homepage">
             <div class="page-content">
