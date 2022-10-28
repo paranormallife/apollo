@@ -8,7 +8,7 @@
         <?php
             $shortcode = get_theme_mod('reviews_shortcode');
             if( $shortcode ) {
-                echo '<div class="reviews-plugin">' . $shortcode . '</div>';
+                echo '<div class="reviews-plugin">' . do_shortcode($shortcode) . '</div>';
             } else {
                 get_template_part('snippets/testimonials-carousel'); 
             }
