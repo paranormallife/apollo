@@ -17,6 +17,13 @@ $reviews_intro = get_theme_mod('reviews_intro');
             <a href="<?= $leave_a_review; ?>" class="button" target="_blank">Leave a Review</a>
         </p>
     </div>
+
+    <?php
+        $shortcode = get_theme_mod('reviews_shortcode');
+        if( $shortcode ) {
+            echo '<div class="reviews-plugin">' . do_shortcode($shortcode) . '</div>';
+        }
+    ?>
     <?php if ( $the_query->have_posts() ) : ?>
         <div class="testimonials-grid">
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
