@@ -37,7 +37,16 @@
 <?php /* This should always be included just before the </head> tag. */ wp_head(); ?>
 </head>
 
-<body id="body" class="asw <?php if(is_front_page()) { echo 'home '; } else { echo get_post_type(); echo ' '; echo $post->post_name; } ?>">
+<?php
+  if( is_user_logged_in() ) {
+    $loggedin = 'logged-in';
+    else {
+      $loggedin = 'not-logged-in';
+    }
+  }
+?>
+
+<body id="body" class="asw <?php if(is_front_page()) { echo 'home '; } else { echo get_post_type(); echo ' '; echo $post->post_name; } ?> <?= $loggedin; ?>">
 
 <header>
   <?php get_template_part('snippets/header_nav'); ?>
