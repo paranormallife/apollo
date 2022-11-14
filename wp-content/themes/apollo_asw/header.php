@@ -40,9 +40,8 @@
 <?php
   if( is_user_logged_in() ) {
     $loggedin = 'logged-in';
-    else {
-      $loggedin = 'not-logged-in';
-    }
+  } else {
+    $loggedin = 'not-logged-in';
   }
 ?>
 
