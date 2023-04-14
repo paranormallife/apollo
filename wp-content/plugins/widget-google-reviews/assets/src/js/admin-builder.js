@@ -1,9 +1,77 @@
+const GRW_LANGS = [
+    ['ar', 'Arabic'],
+    ['bg', 'Bulgarian'],
+    ['bn', 'Bengali'],
+    ['ca', 'Catalan'],
+    ['cs', 'Czech'],
+    ['da', 'Danish'],
+    ['de', 'German'],
+    ['el', 'Greek'],
+    ['en', 'English'],
+    ['es', 'Spanish'],
+    ['eu', 'Basque'],
+    ['eu', 'Basque'],
+    ['fa', 'Farsi'],
+    ['fi', 'Finnish'],
+    ['fil', 'Filipino'],
+    ['fr', 'French'],
+    ['gl', 'Galician'],
+    ['gu', 'Gujarati'],
+    ['hi', 'Hindi'],
+    ['hr', 'Croatian'],
+    ['hu', 'Hungarian'],
+    ['id', 'Indonesian'],
+    ['it', 'Italian'],
+    ['iw', 'Hebrew'],
+    ['ja', 'Japanese'],
+    ['kn', 'Kannada'],
+    ['ko', 'Korean'],
+    ['lt', 'Lithuanian'],
+    ['lv', 'Latvian'],
+    ['ml', 'Malayalam'],
+    ['mr', 'Marathi'],
+    ['nl', 'Dutch'],
+    ['no', 'Norwegian'],
+    ['pl', 'Polish'],
+    ['pt', 'Portuguese'],
+    ['pt-BR', 'Portuguese (Brazil)'],
+    ['pt-PT', 'Portuguese (Portugal)'],
+    ['ro', 'Romanian'],
+    ['ru', 'Russian'],
+    ['sk', 'Slovak'],
+    ['sl', 'Slovenian'],
+    ['sr', 'Serbian'],
+    ['sv', 'Swedish'],
+    ['ta', 'Tamil'],
+    ['te', 'Telugu'],
+    ['th', 'Thai'],
+    ['tl', 'Tagalog'],
+    ['tr', 'Turkish'],
+    ['uk', 'Ukrainian'],
+    ['vi', 'Vietnamese'],
+    ['zh', 'Chinese (Simplified)'],
+    ['zh-Hant', 'Chinese (Traditional)']
+];
+
 var GRW_HTML_CONTENT = '' +
 
     '<div class="grw-builder-platforms grw-builder-inside">' +
 
-        '<div class="grw-toggle grw-builder-connect grw-connect-google">Connect Google</div>' +
-        '<div class="grw-connect-google-inside" style="display:none">' +
+        '<div class="grw-builder-connect grw-connect-google">Google Connection</div>' +
+        '<div id="grw-connect-wizard" title="Easy steps to connect Google Reviews" style="display:none;">' +
+            '<p>1) Find your Google place on a map below (<u>Enter a location</u>) and copy your <u>Place ID</u></p>' +
+            '<iframe src="https://geo-devrel-javascript-samples.web.app/samples/places-placeid-finder/app/dist" loading="lazy" style="width:100%;height:250px"></iframe>' +
+            '<small style="font-size:13px">If you can\'t find your place on a map here, please use <a href="' + GRW_VARS.supportUrl + '&grw_tab=fig#place_id" target="_blank">this manual how to find any Google Place ID</a>.</small>' +
+            '<p>' +
+                '2) Paste copied Place ID in this field and select language if needed' +
+                '<input type="text" class="grw-connect-id" value="" placeholder="Place ID" />' +
+                '<select class="grw-connect-lang"><option value="" selected="selected">Choose language if needed</option><option value="ar">Arabic</option><option value="bg">Bulgarian</option><option value="bn">Bengali</option><option value="ca">Catalan</option><option value="cs">Czech</option><option value="da">Danish</option><option value="de">German</option><option value="el">Greek</option><option value="en">English</option><option value="es">Spanish</option><option value="eu">Basque</option><option value="eu">Basque</option><option value="fa">Farsi</option><option value="fi">Finnish</option><option value="fil">Filipino</option><option value="fr">French</option><option value="gl">Galician</option><option value="gu">Gujarati</option><option value="hi">Hindi</option><option value="hr">Croatian</option><option value="hu">Hungarian</option><option value="id">Indonesian</option><option value="it">Italian</option><option value="iw">Hebrew</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lt">Lithuanian</option><option value="lv">Latvian</option><option value="ml">Malayalam</option><option value="mr">Marathi</option><option value="nl">Dutch</option><option value="no">Norwegian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="pt-BR">Portuguese (Brazil)</option><option value="pt-PT">Portuguese (Portugal)</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option value="sr">Serbian</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tl">Tagalog</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="vi">Vietnamese</option><option value="zh">Chinese (Simplified)</option><option value="zh-Hant">Chinese (Traditional)</option></select>' +
+            '</p>' +
+            '<p>3) Click CONNECT GOOGLE button</p>' +
+            '<button class="grw-connect-btn">Connect Google</button>' +
+            '<small class="grw-connect-error"></small>' +
+        '</div>' +
+        /*'<div class="grw-connect-google-inside" style="display:none">' +
             '<div class="grw-builder-option">' +
                 '<input type="text" class="grw-connect-id" value="" placeholder="Place ID" />' +
                 '<span class="grw-quest grw-toggle" title="Click to help">?</span>' +
@@ -75,7 +143,7 @@ var GRW_HTML_CONTENT = '' +
                 '<button class="grw-connect-btn">Connect Google</button>' +
                 '<small class="grw-connect-error"></small>' +
             '</div>' +
-        '</div>' +
+        '</div>' +*/
 
         '<div class="grw-connections"></div>' +
 
@@ -105,6 +173,24 @@ var GRW_HTML_CONTENT = '' +
             '<div class="grw-builder-option">' +
                 'Maximum characters before \'read more\' link' +
                 '<input type="text" name="text_size" value="">' +
+            '</div>' +
+            '<div class="grw-builder-option">' +
+                '<label>' +
+                    '<input type="checkbox" name="header_center" value="">' +
+                    'Show rating by center' +
+                '</label>' +
+            '</div>' +
+            '<div class="grw-builder-option">' +
+                '<label>' +
+                    '<input type="checkbox" name="header_hide_photo" value="">' +
+                    'Hide business photo' +
+                '</label>' +
+            '</div>' +
+            '<div class="grw-builder-option">' +
+                '<label>' +
+                    '<input type="checkbox" name="header_hide_name" value="">' +
+                    'Hide business name' +
+                '</label>' +
             '</div>' +
             '<div class="grw-builder-option">' +
                 '<label>' +
@@ -253,18 +339,21 @@ function grw_builder_init($, data) {
 
     el.innerHTML = GRW_HTML_CONTENT;
 
-    var connect_google_el = el.querySelector('.grw-connect-google-inside'),
-        google_pid_el = el.querySelector('.grw-connect-id');
+    var $connect_wizard_el = $('#grw-connect-wizard');
+        //connect_google_el = el.querySelector('.grw-connect-google-inside'),
+        //google_pid_el = el.querySelector('.grw-connect-id');
 
-    if (data.conns) {
-        grw_deserialize_connections($, el, data.conns, data.opts);
+    if (data.conns && data.conns.connections && data.conns.connections.length) {
+        grw_deserialize_connections($, el, data);
     } else {
-        connect_google_el.style = '';
-        google_pid_el.focus();
+        $('.grw-connect-google').hide();
+        $connect_wizard_el.dialog({modal: true, width: '50%', maxWidth: '600px'});
+        //connect_google_el.style = '';
+        //google_pid_el.focus();
     }
 
     // Google Connect
-    grw_connection($, connect_google_el, 'google', data.authcode);
+    grw_connection($, /*connect_google_el*/$connect_wizard_el[0], 'google', data.authcode);
 
     $('.grw-connect-options input[type="text"],.grw-connect-options textarea').keyup(function() {
         grw_serialize_connections();
@@ -278,8 +367,9 @@ function grw_builder_init($, data) {
         $(this).next().slideToggle();
     });
 
-    $('.grw-toggle.grw-connect-google').click(function () {
-        google_pid_el.focus();
+    $('.grw-builder-connect.grw-connect-google').click(function () {
+        //google_pid_el.focus();
+        $connect_wizard_el.dialog({modal: true, width: '50%', maxWidth: '600px'});
     });
 
     if ($('.grw-connections').sortable) {
@@ -297,7 +387,8 @@ function grw_builder_init($, data) {
     });
 
     $('#grw_save').click(function() {
-        grw_feed_save_ajax();
+        //grw_feed_save_ajax();
+        grw_serialize_connections();
         return false;
     });
 }
@@ -336,7 +427,7 @@ function grw_feed_save_ajax($) {
         if (!window.grw_post_id.value) {
             var post_id = document.querySelector('.wp-gr').getAttribute('data-id');
             window.grw_post_id.value = post_id;
-            window.location.href = window.location.href + '&grw_feed_id=' + post_id;
+            window.location.href = window.location.href + '&grw_feed_id=' + post_id + '&grw_feed_new=1';
         }
 
         window.grw_save.innerText = 'Save & Refresh';
@@ -403,21 +494,24 @@ function grw_connection($, el, platform, authcode) {
         connect_btn.innerHTML = 'Please wait...';
         connect_btn.disabled = true;
 
-        grw_connect_ajax($, el, {id: id, lang: lang}, platform, authcode, 1);
+        grw_connect_ajax($, el, {id: id, lang: lang, platform: platform, local_img: true}, authcode, 1);
         return false;
     });
 }
 
-function grw_connect_ajax($, el, params, platform, authcode, attempt) {
+function grw_connect_ajax($, el, params, authcode, attempt) {
 
-    var connect_btn = el.querySelector('.grw-connect-btn'),
+    var platform = params.platform,
+        connect_btn = el.querySelector('.grw-connect-btn'),
         url = GRW_VARS.handlerUrl + '&cf_action=grw_connect_' + platform + '&v=' + new Date().getTime();
 
     $.post(url, {
-        id: decodeURIComponent(params.id),
-        lang: params.lang,
+        id          : decodeURIComponent(params.id),
+        lang        : params.lang,
+        local_img   : params.local_img,
+        feed_id     : $('input[name="grw_feed[post_id]"]').val(),
         //key: key,
-        grw_wpnonce: $('#grw_nonce').val()
+        grw_wpnonce : $('#grw_nonce').val()
     }, function(res) {
 
         console.log('grw_connect_debug:', res);
@@ -431,19 +525,22 @@ function grw_connect_ajax($, el, params, platform, authcode, attempt) {
 
             error_el.innerHTML = '';
 
+            try { $('#grw-connect-wizard').dialog('close'); } catch (e) {}
+
             var connection_params = {
-                id       : res.result.id,
-                lang     : params.lang,
-                name     : res.result.name,
-                photo    : res.result.photo,
-                refresh  : true,
-                platform : platform,
-                props    : {
+                id        : res.result.id,
+                lang      : params.lang,
+                name      : res.result.name,
+                photo     : res.result.photo,
+                refresh   : true,
+                local_img : params.local_img,
+                platform  : platform,
+                props     : {
                     default_photo : res.result.photo
                 }
             };
 
-            grw_connection_add($, el, connection_params);
+            grw_connection_add($, el, connection_params, authcode);
             grw_serialize_connections();
 
         } else {
@@ -459,7 +556,7 @@ function grw_connect_ajax($, el, params, platform, authcode, attempt) {
                         return;
                     }
                     grw_popup('https://gpaw.widgetpack.com/botcheck?authcode=' + authcode, 640, 480, function() {
-                        grw_connect_ajax($, el, params, platform, authcode, attempt + 1);
+                        grw_connect_ajax($, el, params, authcode, attempt + 1);
                     });
                     break;
 
@@ -480,14 +577,10 @@ function grw_connect_ajax($, el, params, platform, authcode, attempt) {
     }, 'json');
 }
 
-function grw_connection_add($, el, conn, checked) {
+function grw_connection_add($, el, conn, authcode, checked) {
 
-    var connected_id = 'grw-' + conn.platform + '-' + conn.id.replace(/\//g, '');
-    if (conn.lang != null) {
-        connected_id += conn.lang;
-    }
-
-    var connected_el = $('#' + connected_id);
+    var connected_id = grw_connection_id(conn),
+        connected_el = $('#' + connected_id);
 
     if (!connected_el.length) {
         connected_el = $('<div class="grw-connection"></div>')[0];
@@ -529,19 +622,40 @@ function grw_connection_add($, el, conn, checked) {
             grw_serialize_connections();
         });
 
+        $('select.grw-connect-lang', connected_el).change(function() {
+            conn.lang = this.value;
+            connected_el.id = grw_connection_id(conn);
+            connected_el.setAttribute('data-lang', this.value);
+            grw_connect_ajax($, el, conn, authcode, 1);
+            return false;
+        });
+
+        $('input[name="local_img"]', connected_el).unbind('click').click(function() {
+            conn.local_img = this.checked;
+            grw_connect_ajax($, el, conn, authcode, 1);
+        });
+
+        $('.grw-connect-reconnect', connected_el).click(function() {
+            grw_connect_ajax($, el, conn, authcode, 1);
+            return false;
+        });
+
         $('.grw-connect-delete', connected_el).click(function() {
             if (confirm('Are you sure to delete this business?')) {
-                if (!GRW_VARS.wordpress) {
-                    var id = connected_el.querySelector('input[name="id"]').value,
-                        deleted = window.connections_delete.value;
-                    window.connections_delete.value += (deleted ? ',' + id : id);
-                }
                 $(connected_el).remove();
                 grw_serialize_connections();
             }
             return false;
         });
     }
+}
+
+function grw_connection_id(conn) {
+    var id = 'grw-' + conn.platform + '-' + conn.id.replace(/\//g, '');
+    if (conn.lang != null) {
+        id += conn.lang;
+    }
+    return id;
 }
 
 function grw_connection_render(conn, checked) {
@@ -583,7 +697,6 @@ function grw_connection_render(conn, checked) {
                 '<a href="#" class="grw-connect-photo-change">Change</a>' +
                 '<a href="#" class="grw-connect-photo-default">Default</a>' +
                 '<input type="hidden" name="photo" class="grw-connect-photo-hidden" value="' + conn.photo + '" tabindex="2"/>' +
-                '<input type="file" tabindex="-1" accept="image/*" onchange="grw_upload_image(this.parentNode, this.files)" style="display:none!important">' +
             '</div>' +
             '<div class="grw-builder-option">' +
                 '<input type="text" name="name" value="' + conn.name + '" />' +
@@ -595,7 +708,8 @@ function grw_connection_render(conn, checked) {
             : '' ) +
             (conn.lang != undefined ?
             '<div class="grw-builder-option">' +
-                '<input type="text" name="lang" value="' + conn.lang + '" placeholder="Default language (English)" readonly />' +
+                //'<input type="text" name="lang" value="' + conn.lang + '" placeholder="Default language (English)" />' +
+                grw_lang('Show all connected languages', conn.lang) +
             '</div>'
             : '' ) +
             (conn.review_count != undefined ?
@@ -608,7 +722,8 @@ function grw_connection_render(conn, checked) {
             (conn.refresh != undefined ?
             '<div class="grw-builder-option">' +
                 '<label>' +
-                    '<input type="checkbox" name="refresh" ' + (conn.refresh ? 'checked' : '') + '> Refresh reviews' +
+                    '<input type="checkbox" name="refresh" ' + (conn.refresh ? 'checked' : '') + '>' +
+                    'Update reviews daily' +
                 '</label>' +
                 '<span class="grw-quest grw-quest-top grw-toggle" title="Click to help">?</span>' +
                 '<div class="grw-quest-help">' +
@@ -618,7 +733,16 @@ function grw_connection_render(conn, checked) {
             '</div>'
             : '' ) +
             '<div class="grw-builder-option">' +
-                '<button class="grw-connect-delete">Delete business</button>' +
+                '<label>' +
+                    '<input type="checkbox" name="local_img" ' + (conn.local_img ? 'checked' : '') + '>' +
+                    'Save images locally (GDPR)' +
+                '</label>' +
+            '</div>' +
+            '<div class="grw-builder-option">' +
+                '<button class="grw-connect-reconnect">Reconnect</button>' +
+            '</div>' +
+            '<div class="grw-builder-option">' +
+                '<button class="grw-connect-delete">Delete connection</button>' +
             '</div>' +
         '</div>';
 }
@@ -678,17 +802,17 @@ function grw_serialize_connections() {
             if (input.type == 'checkbox') {
                 options[name] = input.checked;
             } else if (input.value != undefined) {
-                options[name] = (input.type == 'textarea' || name == 'word_filter' || name == 'word_exclude' ? encodeURIComponent(input.value) : input.value);
+                options[name] = (
+                                    input.type == 'textarea'     ||
+                                    name       == 'word_filter'  ||
+                                    name       == 'word_exclude' ?
+                                    encodeURIComponent(input.value) : input.value
+                                );
             }
         }
     }
 
-    if (GRW_VARS.wordpress) {
-        document.getElementById('grw-builder-connection').value = JSON.stringify({connections: connections, options: options});
-    } else {
-        document.getElementById('grw-builder-connections').value = JSON.stringify(connections);
-        document.getElementById('grw-builder-options').value = JSON.stringify(options);
-    }
+    document.getElementById('grw-builder-connection').value = JSON.stringify({connections: connections, options: options});
 
     if (connections.length) {
         var first = connections[0],
@@ -698,43 +822,46 @@ function grw_serialize_connections() {
             window.grw_title.value = first.name;
         }
         grw_feed_save_ajax();
+    } else {
+        /*var connect_google_el = document.querySelector('.grw-connect-google-inside'),
+            google_pid_el = document.querySelector('.grw-connect-id');
+
+        connect_google_el.style = '';
+        google_pid_el.focus();*/
     }
 }
 
-function grw_deserialize_connections($, el, connections, options) {
-    if (GRW_VARS.wordpress) {
+function grw_deserialize_connections($, el, data) {
+    var connections = data.conns,
         options = connections.options;
-        if (Array.isArray(connections.connections)) {
-            connections = connections.connections;
-        } else {
-            var temp_conns = [];
-            if (Array.isArray(connections.google)) {
-                for (var c = 0; c < connections.google.length; c++) {
-                    connections.google[c].platform = 'google';
-                }
-                temp_conns = temp_conns.concat(connections.google);
-            }
-            if (Array.isArray(connections.facebook)) {
-                for (var c = 0; c < connections.facebook.length; c++) {
-                    connections.facebook[c].platform = 'facebook';
-                }
-                temp_conns = temp_conns.concat(connections.facebook);
-            }
-            if (Array.isArray(connections.yelp)) {
-                for (var c = 0; c < connections.yelp.length; c++) {
-                    connections.yelp[c].platform = 'yelp';
-                }
-                temp_conns = temp_conns.concat(connections.yelp);
-            }
-            connections = temp_conns;
-        }
+
+    if (Array.isArray(connections.connections)) {
+        connections = connections.connections;
     } else {
-        connections = JSON.parse(connections);
-        options = JSON.parse(options);
+        var temp_conns = [];
+        if (Array.isArray(connections.google)) {
+            for (var c = 0; c < connections.google.length; c++) {
+                connections.google[c].platform = 'google';
+            }
+            temp_conns = temp_conns.concat(connections.google);
+        }
+        if (Array.isArray(connections.facebook)) {
+            for (var c = 0; c < connections.facebook.length; c++) {
+                connections.facebook[c].platform = 'facebook';
+            }
+            temp_conns = temp_conns.concat(connections.facebook);
+        }
+        if (Array.isArray(connections.yelp)) {
+            for (var c = 0; c < connections.yelp.length; c++) {
+                connections.yelp[c].platform = 'yelp';
+            }
+            temp_conns = temp_conns.concat(connections.yelp);
+        }
+        connections = temp_conns;
     }
 
     for (var i = 0; i < connections.length; i++) {
-        grw_connection_add($, el.querySelector('.grw-builder-platforms'), connections[i], true);
+        grw_connection_add($, el.querySelector('.grw-builder-platforms'), connections[i], data.authcode, true);
     }
 
     for (var opt in options) {
@@ -745,7 +872,12 @@ function grw_deserialize_connections($, el, connections, options) {
                 if (typeof(options[opt]) === 'boolean') {
                     control.checked = options[opt];
                 } else {
-                    control.value = (control.type == 'textarea' || name == 'word_filter' || name == 'word_exclude' ? decodeURIComponent(options[opt]) : options[opt]);
+                    control.value = (
+                                        control.type == 'textarea'     ||
+                                        name         == 'word_filter'  ||
+                                        name         == 'word_exclude' ?
+                                        decodeURIComponent(options[opt]) : options[opt]
+                                    );
                     if (opt.indexOf('_photo') > -1 && control.value) {
                         control.parentNode.querySelector('img').src = control.value;
                     }
@@ -756,51 +888,23 @@ function grw_deserialize_connections($, el, connections, options) {
 }
 
 function grw_upload_photo(el, file_frame, cb) {
-    if (GRW_VARS.wordpress) {
-        if (file_frame) {
-            file_frame.open();
-            return;
-        }
-
-        file_frame = wp.media.frames.file_frame = wp.media({
-            title: jQuery(this).data('uploader_title'),
-            button: {text: jQuery(this).data('uploader_button_text')},
-            multiple: false
-        });
-
-        file_frame.on('select', function() {
-            var attachment = file_frame.state().get('selection').first().toJSON();
-            grw_change_photo(el, attachment.url);
-            cb && cb(attachment.url);
-        });
+    if (file_frame) {
         file_frame.open();
-    } else {
-        el.querySelector('input[type="file"]').click();
-        return false;
-    }
-}
-
-function grw_upload_image(el, files) {
-    var formData = new FormData();
-    for (var i = 0, file; file = files[i]; ++i) {
-        formData.append('file', file);
+        return;
     }
 
-    var handler = this;
+    file_frame = wp.media.frames.file_frame = wp.media({
+        title: jQuery(this).data('uploader_title'),
+        button: {text: jQuery(this).data('uploader_button_text')},
+        multiple: false
+    });
 
-    if (!this.xhr) {
-        this.xhr = new XMLHttpRequest();
-    }
-    this.xhr.open('POST', 'https://media.cackle.me/upload2', true);
-    this.xhr.onload = function(e) {
-        if (4 === handler.xhr.readyState) {
-            if (200 === handler.xhr.status && handler.xhr.responseText.length > 0) {
-                var img = 'https://media.cackle.me/' + handler.xhr.responseText;
-                grw_change_photo(el, img);
-            }
-        }
-    };
-    this.xhr.send(formData);
+    file_frame.on('select', function() {
+        var attachment = file_frame.state().get('selection').first().toJSON();
+        grw_change_photo(el, attachment.url);
+        cb && cb(attachment.url);
+    });
+    file_frame.open();
 }
 
 function grw_change_photo(el, photo_url) {
@@ -844,4 +948,15 @@ function grw_is_hidden(el) {
 
 function grw_capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function grw_lang(defname, lang) {
+    var html = '';
+    for (var i = 0; i < GRW_LANGS.length; i++) {
+        html += '<option value="' + GRW_LANGS[i][0] + '"' + (lang == GRW_LANGS[i][0] ? ' selected="selected"' : '') + '>' + GRW_LANGS[i][1] + '</option>';
+    }
+    return '<select class="grw-connect-lang" name="lang">' +
+               '<option value=""' + (lang ? '' : ' selected="selected"') + '>' + defname + '</option>' +
+               html +
+           '</select>';
 }

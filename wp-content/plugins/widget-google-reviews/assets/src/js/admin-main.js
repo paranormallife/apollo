@@ -7,6 +7,76 @@ jQuery(document).ready(function($) {
         e.preventDefault();
     });
 
+    var $rateus = $('#grw-rate_us');
+    if ($rateus.length) {
+        var $rateus_dlg = $('#grw-rate_us-feedback'),
+            $rateus_stars = $('#grw-rate_us-feedback-stars');
+
+        grw_svg_init();
+        if (window.location.href.indexOf('grw_feed_new=1') > -1) {
+            $rateus.addClass('grw-flash-visible');
+        }
+        $('.wp-star', $rateus).click(function() {
+            var rate = $(this).index() + 1;
+            if (rate > 3) {
+                $.post({
+                    url      : ajaxurl,
+                    type     : 'POST',
+                    dataType : 'json',
+                    data     : {action: 'grw_rateus_ajax', rate: rate},
+                    success  : function(res) {
+                        console.log(res);
+                    }
+                });
+                window.open('https://wordpress.org/support/plugin/widget-google-reviews/reviews/?rate=' + rate + '#new-post', '_blank');
+                grw_rateus_close();
+            } else {
+                $rateus_stars.attr('data-rate', rate);
+                $rateus_stars.html(grw_stars(rate, '#fb8e28', 24));
+                $rateus_dlg.dialog({modal: true, width: '50%', maxWidth: '600px'});
+                $('.ui-widget-overlay').bind('click', function() {
+                    $rateus_dlg.dialog('close');
+                });
+            }
+        });
+
+        $('.grw-rate_us-cancel').click(function() {
+            $rateus_dlg.dialog('close');
+        });
+
+        $('.grw-rate_us-send').click(function() {
+            $.post({
+                url      : ajaxurl,
+                type     : 'POST',
+                dataType : 'json',
+                data     : {
+                    action : 'grw_rateus_ajax_feedback',
+                    rate   : $rateus_stars.attr('data-rate'),
+                    email  : $('input', $rateus_dlg).val(),
+                    msg    : $('textarea', $rateus_dlg).val(),
+                },
+                success  : function(res) {
+                    $rateus_dlg.dialog({'title': 'Feedback sent'})
+                    $rateus_dlg.html('<b style="color:#4cc74b">Thank you for your feedback!<br>' +
+                                     'We received it and will investigate your suggestions.</b>');
+
+                    grw_rateus_close();
+                    setTimeout(function() {
+                        $rateus_dlg.fadeOut(500, function() { $rateus_dlg.dialog('close'); });
+                    }, 1500);
+                }
+            });
+        });
+
+        function grw_rateus_close() {
+            setTimeout(function() {
+                $rateus.addClass('grw-flash-gout');
+                $rateus.removeClass('grw-flash-visible');
+                $rateus.removeClass('grw-flash-gout');
+            }, 1000);
+        }
+    }
+
     /**
      * Overview page
      */
@@ -18,10 +88,7 @@ jQuery(document).ready(function($) {
             $reviews = $('#grw-overview-reviews'),
             chart    = null;
 
-        var span = document.createElement('span');
-        span.style.display = 'none';
-        span.innerHTML = grw_svg();
-        document.body.appendChild(span);
+        grw_svg_init();
 
         $places.change(function() {
             ajax(this.value);
@@ -52,11 +119,12 @@ jQuery(document).ready(function($) {
                 data     : data,
                 success  : function(res) {
 
-                    var place = res.places.length > 1 ? res.places.find(x => x.id == pid) : res.places[0];
-
-                    if (!place) {
+                    if (!res) {
                         window.location.href = GRW_VARS.builderUrl;
+                        return;
                     }
+
+                    var place = res.places.length > 1 ? res.places.find(x => x.id == pid) : res.places[0];
 
                     /*
                      * Render rating
@@ -66,7 +134,7 @@ jQuery(document).ready(function($) {
                             '<div style=" margin:0 0 6px!important;font-size:15px!important">' + place.name + '</div>' +
                             '<div>' +
                                 '<span class="wp-google-rating">' + res.rating + '</span>' +
-                                '<span class="wp-google-stars">' + grw_stars(res.rating, '#e7711b', 20) + '</span>' +
+                                '<span class="wp-google-stars">' + grw_stars(res.rating, '#fb8e28', 20) + '</span>' +
                             '</div>' +
                             '<div class="wp-google-powered">Based on ' + res.review_count + ' reviews</div>' +
                             '<div class="wp-google-powered">Last updated: ' +
@@ -246,6 +314,13 @@ jQuery(document).ready(function($) {
 
 });
 
+function grw_svg_init() {
+    var span = document.createElement('span');
+    span.style.display = 'none';
+    span.innerHTML = grw_svg();
+    document.body.appendChild(span);
+}
+
 function grw_svg() {
     return '' +
     '<svg>' +
@@ -303,7 +378,7 @@ function grw_review(review) {
             '<a href="' + review.author_url + '" class="wp-google-name" target="_blank" rel="nofollow noopener">' + review.author_name + '</a>' +
             '<div class="wp-google-time" data-time="' + review.time + '"></div>' +
             '<div class="wp-google-feedback">' +
-                '<span class="wp-google-stars">' + grw_stars(review.rating, '#e7711b', 16) + '</span>' +
+                '<span class="wp-google-stars">' + grw_stars(review.rating, '#fb8e28', 16) + '</span>' +
                 '<span class="wp-google-text">' + grw_trimtext(review.text, 50) + '</span>' +
             '</div>' +
             '<a href="#" class="wp-review-hide" data-id="' + review.id + '">' + (review.hide == '' ? 'Hide' : 'Show') + ' review</a>' +

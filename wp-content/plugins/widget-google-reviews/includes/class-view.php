@@ -94,8 +94,12 @@ class View {
                         </div>
                         <?php if (!$options->slider_hide_prevnext) { ?>
                         <div class="grw-slider-controls">
-                            <div class="grw-slider-btns grw-slider-prev">‹</div>
-                            <div class="grw-slider-btns grw-slider-next">›</div>
+                            <div class="grw-slider-btns grw-slider-prev">
+                                <svg viewBox="0 0 24 24"><path d="M14.6,18.4L8.3,12l6.4-6.4l0.7,0.7L9.7,12l5.6,5.6L14.6,18.4z"></path></svg>
+                            </div>
+                            <div class="grw-slider-btns grw-slider-next">
+                                <svg viewBox="0 0 24 24"><path d="M9.4,18.4l-0.7-0.7l5.6-5.6L8.6,6.4l0.7-0.7l6.4,6.4L9.4,18.4z"></path></svg>
+                            </div>
                         </div>
                         <?php } ?>
                     </div>
@@ -193,14 +197,19 @@ class View {
 
     function grw_place($rating, $place, $place_img, $reviews, $options, $show_powered = true, $show_writereview = false) {
         ?>
+        <?php if (!$options->header_hide_photo) { ?>
         <div class="wp-google-left">
             <img src="<?php echo $place_img; ?>" alt="<?php echo $place->name; ?>" width="50" height="50" title="<?php echo $place->name; ?>">
         </div>
-        <div class="wp-google-right">
+        <?php } ?>
+        <div class="wp-google-right"<?php if ($options->header_center) { ?> style="text-align:center!important"<?php } ?>>
+            <?php if (!$options->header_hide_name) { ?>
             <div class="wp-google-name">
                 <?php $place_name_content = '<span>' . $place->name . '</span>';
                 echo $this->grw_anchor($place->url, '', $place_name_content, $options->open_link, $options->nofollow_link); ?>
             </div>
+            <?php } ?>
+
             <?php $this->grw_place_rating($rating, $place->review_count, $options->hide_based_on); ?>
 
             <?php if ($show_powered) { ?>
@@ -361,9 +370,9 @@ class View {
         foreach (array(1,2,3,4,5) as $val) {
             $score = $rating - $val;
             if ($score >= 0) {
-                ?><span class="wp-star"><svg width="17" height="17" viewBox="0 0 1792 1792"><path d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z" fill="#e7711b"></path></svg></span><?php
+                ?><span class="wp-star"><svg width="17" height="17" viewBox="0 0 1792 1792"><path d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z" fill="#fb8e28"></path></svg></span><?php
             } else if ($score > -1 && $score < 0) {
-                ?><span class="wp-star"><svg width="17" height="17" viewBox="0 0 1792 1792"><path d="M1250 957l257-250-356-52-66-10-30-60-159-322v963l59 31 318 168-60-355-12-66zm452-262l-363 354 86 500q5 33-6 51.5t-34 18.5q-17 0-40-12l-449-236-449 236q-23 12-40 12-23 0-34-18.5t-6-51.5l86-500-364-354q-32-32-23-59.5t54-34.5l502-73 225-455q20-41 49-41 28 0 49 41l225 455 502 73q45 7 54 34.5t-24 59.5z" fill="#e7711b"></path></svg></span><?php
+                ?><span class="wp-star"><svg width="17" height="17" viewBox="0 0 1792 1792"><path d="M1250 957l257-250-356-52-66-10-30-60-159-322v963l59 31 318 168-60-355-12-66zm452-262l-363 354 86 500q5 33-6 51.5t-34 18.5q-17 0-40-12l-449-236-449 236q-23 12-40 12-23 0-34-18.5t-6-51.5l86-500-364-354q-32-32-23-59.5t54-34.5l502-73 225-455q20-41 49-41 28 0 49 41l225 455 502 73q45 7 54 34.5t-24 59.5z" fill="#fb8e28"></path></svg></span><?php
             } else {
                 ?><span class="wp-star"><svg width="17" height="17" viewBox="0 0 1792 1792"><path d="M1201 1004l306-297-422-62-189-382-189 382-422 62 306 297-73 421 378-199 377 199zm527-357q0 22-26 48l-363 354 86 500q1 7 1 20 0 50-41 50-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z" fill="#ccc"></path></svg></span><?php
             }

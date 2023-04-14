@@ -13,7 +13,7 @@ class Plugin_Overview_Ajax {
     }
 
     public function overview_ajax() {
-        $overview = $this->core->get_overview($_POST['place_id']);
+        $overview = $this->core->get_overview(isset($_POST['place_id']) ? $_POST['place_id'] : 0);
         echo json_encode($overview);
 
         die();

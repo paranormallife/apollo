@@ -112,6 +112,7 @@ function _rplg_get_parent(el, cl) {
 function _grw_init_slider(el) {
     const SLIDER_ELEM  = el.querySelector('.grw-slider'),
           SLIDER_OPTS  = JSON.parse(SLIDER_ELEM.getAttribute('data-options')),
+          SLIDER_SPEED = SLIDER_OPTS.speed * 1000,
           REVIEWS_ELEM = el.querySelector('.grw-slider-reviews'),
           REVIEW_ELEMS = el.querySelectorAll('.grw-slider-review');
 
@@ -123,7 +124,7 @@ function _grw_init_slider(el) {
             setTimeout(resize, 1);
             _rplg_init_blazy(10);
             if (REVIEW_ELEMS.length) {
-                setTimeout(swipe, 300);
+                setTimeout(swipe, SLIDER_SPEED);
             }
         } else {
             setTimeout(init, 300);
@@ -263,7 +264,7 @@ function _grw_init_slider(el) {
         } else {
             scrollNext(1);
         }
-        swipeTimout = setTimeout(swipe, SLIDER_OPTS.speed * 1000);
+        swipeTimout = setTimeout(swipe, SLIDER_SPEED);
     }
 }
 

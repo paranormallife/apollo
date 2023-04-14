@@ -27,6 +27,8 @@ class Plugin_Settings {
         $grw_google_api_key  = get_option('grw_google_api_key');
         $grw_activation_time = get_option('grw_activation_time');
         $grw_debug_mode      = get_option('grw_debug_mode') == '1';
+
+        $grw_revupd_cron     = get_option('grw_revupd_cron') == '1';
         ?>
 
         <div class="grw-page-title">
@@ -73,7 +75,8 @@ class Plugin_Settings {
                                 <?php if (!$grw_google_api_key && time() - $grw_activation_time > 60 * 60 * 48) { ?>
                                 <div class="grw-warn">Your Google API key is not set for this reason, reviews are not automatically updated daily.<br>Please create your own Google API key and save here.</div>
                                 <?php } ?>
-                                <p>If you do not know how to create Google API key, please read: <a href="<?php echo admin_url('admin.php?page=grw-support&grw_tab=fig'); ?>">Full Installation Guide</a></p>
+                                <p>API key is mandatory to make the reviews automatically updated.</p>
+                                <p>If you do not know how to create it, please read: <a href="<?php echo admin_url('admin.php?page=grw-support&grw_tab=fig'); ?>" target="_blank">Full Installation Guide</a></p>
                                 <div style="padding-top:15px">
                                     <input type="submit" value="Save" name="save" class="button" />
                                 </div>
@@ -85,6 +88,17 @@ class Plugin_Settings {
                 <div id="grw-advance" class="tab-content" style="display:<?php echo $tab == 'advance' ? 'block' : 'none'?>;">
                     <h3>Advance</h3>
                     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php?action=grw_settings_save&grw_tab=advance')); ?>">
+
+                        <div class="grw-field">
+                            <div class="grw-field-label">
+                                <label>Reviews update daily schedule is <b><?php echo $grw_revupd_cron ? 'enabled' : 'disabled' ?></b></label>
+                            </div>
+                            <div class="wp-review-field-option">
+                                <?php wp_nonce_field('grw-wpnonce_revupd_cron', 'grw-form_nonce_revupd_cron'); ?>
+                                <input type="submit" value="<?php echo $grw_revupd_cron ? 'Disable' : 'Enable'; ?>" name="revupd_cron" class="button" />
+                            </div>
+                        </div>
+
                         <div class="grw-field">
                             <div class="grw-field-label">
                                 <label>Re-create the database tables of the plugin (service option)</label>

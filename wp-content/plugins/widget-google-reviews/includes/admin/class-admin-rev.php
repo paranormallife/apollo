@@ -56,7 +56,7 @@ class Admin_Rev {
                           '<p style="color:#999;font-size:12px;">' .
                               'By the way, if you have been thinking about upgrading to the ' .
                               '<a href="https://richplugins.com/business-reviews-bundle-wordpress-plugin" target="_blank">Business</a> ' .
-                              'version, here is a 25% off onboard coupon ->  <b>business25off</b>' .
+                              'version, here is a 30% off onboard coupon ->  <b>GRGROW23</b>' .
                           '</p>';
 
                 printf('<div class="%1$s" style="position:fixed;top:50px;right:20px;padding-right:30px;z-index:2;margin-left:20px">%2$s</div>', esc_attr($class), $notice);

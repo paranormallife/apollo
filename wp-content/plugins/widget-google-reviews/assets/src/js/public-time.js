@@ -114,7 +114,7 @@ WPacTime.Messages = {
         day:     'день назад',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'день назад', 'дня назад', 'дней назад'); },
         month:   'месяц назад',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'месяц назад', 'месяца назад', 'месяцев назад'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'месяц назад', 'месяца назад', 'месяцев назад'); },
         year:    'год назад',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'год назад', 'года назад', 'лет назад'); }
     },
@@ -127,7 +127,7 @@ WPacTime.Messages = {
         day:     'a day ago',
         days:    function(d) { return Math.round(d) + ' days ago'; },
         month:   'a month ago',
-        months:  function(d) { return Math.round(d / 30) + ' months ago'; },
+        months:  function(d) { return Math.floor(d / 30) + ' months ago'; },
         year:    'a year ago',
         years:   function(y) { return Math.round(y) + ' years ago'; }
     },
@@ -140,7 +140,7 @@ WPacTime.Messages = {
         day:     'день тому',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'день тому', 'дні тому', 'днів тому'); },
         month:   'місяць тому',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'місяць тому', 'місяці тому', 'місяців тому'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'місяць тому', 'місяці тому', 'місяців тому'); },
         year:    'рік тому',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'рік тому', 'роки тому', 'років тому'); }
     },
@@ -153,7 +153,7 @@ WPacTime.Messages = {
         day:     'o zi in urma',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'o zi in urma', 'zile in urma', 'de zile in urma'); },
         month:   'o luna in urma',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'o luna in urma', 'luni in urma', 'de luni in urma'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'o luna in urma', 'luni in urma', 'de luni in urma'); },
         year:    'un an in urma',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'un an in urma', 'ani in urma', 'de ani in urma'); }
     },
@@ -166,7 +166,7 @@ WPacTime.Messages = {
         day:     'pirms dienas',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'pirms dienas', 'pirms dienām', 'pirms dienām'); },
         month:   'pirms mēneša',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'pirms mēneša', 'pirms mēnešiem', 'pirms mēnešiem'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'pirms mēneša', 'pirms mēnešiem', 'pirms mēnešiem'); },
         year:    'pirms gada',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'pirms gada', 'pirms gadiem', 'pirms gadiem'); }
     },
@@ -179,7 +179,7 @@ WPacTime.Messages = {
         day:     'prieš dieną',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'diena prieš', 'dienos prieš', 'dienų prieš'); },
         month:   'prieš mėnesį',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'mėnesį prieš', 'mėnesiai prieš', 'mėnesių prieš'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'mėnesį prieš', 'mėnesiai prieš', 'mėnesių prieš'); },
         year:    'prieš metus',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'metai prieš', 'metai prieš', 'metų prieš'); }
     },
@@ -192,7 +192,7 @@ WPacTime.Messages = {
         day:     'бір күн бұрын',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'күн бұрын', 'күн бұрын', 'күн бұрын'); },
         month:   'бір ай бұрын',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'ай бұрын', 'ай бұрын', 'ай бұрын'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'ай бұрын', 'ай бұрын', 'ай бұрын'); },
         year:    'бір жыл бұрын',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'жыл бұрын', 'жыл бұрын', 'жыл бұрын'); }
     },
@@ -205,7 +205,7 @@ WPacTime.Messages = {
         day:     'დღის წინ',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'დღის წინ', 'დღის წინ', 'დღის წინ'); },
         month:   'თვის წინ',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'თვის წინ', 'თვის წინ', 'თვის წინ'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'თვის წინ', 'თვის წინ', 'თვის წინ'); },
         year:    'წლის წინ',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'წლის წინ', 'წლის წინ', 'წლის წინ'); }
     },
@@ -218,7 +218,7 @@ WPacTime.Messages = {
         day:     'մեկ օր առաջ',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'օր առաջ', 'օր առաջ', 'օր առաջ'); },
         month:   'մեկ ամիս առաջ',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'ամիս առաջ', 'ամիս առաջ', 'ամիս առաջ'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'ամիս առաջ', 'ամիս առաջ', 'ամիս առաջ'); },
         year:    'մեկ տարի առաջ',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'տարի առաջ', 'տարի առաջ', 'տարի առաջ'); }
     },
@@ -231,7 +231,7 @@ WPacTime.Messages = {
         day:     'un jour',
         days:    function(d) { return Math.round(d) + ' jours'; },
         month:   'environ un mois',
-        months:  function(d) { return Math.round(d / 30) + ' mois'; },
+        months:  function(d) { return Math.floor(d / 30) + ' mois'; },
         year:    'environ un an',
         years:   function(y) { return Math.round(y) + ' ans'; }
     },
@@ -244,7 +244,7 @@ WPacTime.Messages = {
         day:     'hace un dia',
         days:    function(d) { return 'hace ' + Math.round(d) + ' días'; },
         month:   'hace un mes',
-        months:  function(d) { return 'hace ' + Math.round(d / 30) + ' meses'; },
+        months:  function(d) { return 'hace ' + Math.floor(d / 30) + ' meses'; },
         year:    'hace años',
         years:   function(y) { return 'hace ' + Math.round(y) + ' años'; }
     },
@@ -257,7 +257,7 @@ WPacTime.Messages = {
         day:     'μια μέρα',
         days:    function(d) { return Math.round(d) + ' days'; },
         month:   'γύρω στον ένα μήνα',
-        months:  function(d) { return Math.round(d / 30) + ' months'; },
+        months:  function(d) { return Math.floor(d / 30) + ' months'; },
         year:    'γύρω στον ένα χρόνο',
         years:   function(y) { return Math.round(y) + ' years'; }
     },
@@ -270,7 +270,7 @@ WPacTime.Messages = {
         day:     'vor einem Tag',
         days:    function(d) { return 'vor ' + Math.round(d) + ' Tagen'; },
         month:   'vor einem Monat',
-        months:  function(d) { return 'vor ' + Math.round(d / 30) + ' Monaten'; },
+        months:  function(d) { return 'vor ' + Math.floor(d / 30) + ' Monaten'; },
         year:    'vor einem Jahr',
         years:   function(y) { return 'vor ' + Math.round(y) + ' Jahren'; }
     },
@@ -283,7 +283,7 @@ WPacTime.Messages = {
         day:     'дзень таму',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'дзень таму', 'дні таму', 'дзён таму'); },
         month:   'месяц таму',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'месяц таму', 'месяца таму', 'месяцаў таму'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'месяц таму', 'месяца таму', 'месяцаў таму'); },
         year:    'год таму',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'год таму', 'гады таму', 'год таму'); }
     },
@@ -296,7 +296,7 @@ WPacTime.Messages = {
         day:     'un giorno fa',
         days:    function(d) { return WPacTime.declineNum(Math.round(d), 'un giorno fa', 'giorni fa', 'giorni fa'); },
         month:   'un mese fa',
-        months:  function(d) { return WPacTime.declineNum(Math.round(d / 30), 'un mese fa', 'mesi fa', 'mesi fa'); },
+        months:  function(d) { return WPacTime.declineNum(Math.floor(d / 30), 'un mese fa', 'mesi fa', 'mesi fa'); },
         year:    'un anno fa',
         years:   function(y) { return WPacTime.declineNum(Math.round(y), 'un anno fa', 'anni fa', 'anni fa'); }
     },
@@ -309,7 +309,7 @@ WPacTime.Messages = {
         day:     'gün önce',
         days:    function(d) { return Math.round(d) + ' gün önce'; },
         month:   'ay önce',
-        months:  function(d) { return Math.round(d / 30) + ' ay önce'; },
+        months:  function(d) { return Math.floor(d / 30) + ' ay önce'; },
         year:    'yıl önce',
         years:   function(y) { return Math.round(y) + ' yıl önce'; }
     },
@@ -322,7 +322,7 @@ WPacTime.Messages = {
         day:     'en dag siden',
         days:    function(d) { return Math.round(d) + ' dager siden'; },
         month:   'en måned siden',
-        months:  function(d) { return Math.round(d / 30) + ' måneder siden'; },
+        months:  function(d) { return Math.floor(d / 30) + ' måneder siden'; },
         year:    'ett år siden',
         years:   function(y) { return Math.round(y) + ' år siden'; }
     },
@@ -335,7 +335,7 @@ WPacTime.Messages = {
         day:     'en dag siden',
         days:    function(d) { return Math.round(d) + ' dage siden'; },
         month:   'en måned siden',
-        months:  function(d) { return Math.round(d / 30) + ' måneder siden'; },
+        months:  function(d) { return Math.floor(d / 30) + ' måneder siden'; },
         year:    'et år siden',
         years:   function(y) { return Math.round(y) + ' år siden'; }
     },
@@ -348,7 +348,7 @@ WPacTime.Messages = {
         day:     '1 dag geleden',
         days:    function(d) { return Math.round(d) + ' dagen geleden'; },
         month:   'maand geleden',
-        months:  function(d) { return Math.round(d / 30) + ' maanden geleden'; },
+        months:  function(d) { return Math.floor(d / 30) + ' maanden geleden'; },
         year:    'jaar geleden',
         years:   function(y) { return Math.round(y) + ' jaar geleden'; }
     },
@@ -361,7 +361,7 @@ WPacTime.Messages = {
         day:     'fa un dia',
         days:    function(d) { return 'fa ' + Math.round(d) + ' dies'; },
         month:   'fa un mes',
-        months:  function(d) { return 'fa ' + Math.round(d / 30) + ' mesos'; },
+        months:  function(d) { return 'fa ' + Math.floor(d / 30) + ' mesos'; },
         year:    'fa un any',
         years:   function(y) { return 'fa ' + Math.round(y) + ' anys'; }
     },
@@ -374,7 +374,7 @@ WPacTime.Messages = {
         day:     'en dag sedan',
         days:    function(d) { return Math.round(d) + ' dagar sedan'; },
         month:   'en månad sedan',
-        months:  function(d) { return Math.round(d / 30) + ' månader sedan'; },
+        months:  function(d) { return Math.floor(d / 30) + ' månader sedan'; },
         year:    'ett år sedan',
         years:   function(y) { return Math.round(y) + ' år sedan'; }
     },
@@ -387,7 +387,7 @@ WPacTime.Messages = {
         day:     'wczoraj',
         days:    function(d) { return Math.round(d) + ' dni temu'; },
         month:   'miesiąc temu',
-        months:  function(d) { return Math.round(d / 30) + ' miesięcy temu'; },
+        months:  function(d) { return Math.floor(d / 30) + ' miesięcy temu'; },
         year:    'rok temu',
         years:   function(y) { return Math.round(y) + ' lat temu'; }
     },
@@ -400,7 +400,7 @@ WPacTime.Messages = {
         day:     '1 dia atrás',
         days:    function(d) { return Math.round(d) + ' dias atrás'; },
         month:   '1 mês atrás',
-        months:  function(d) { return Math.round(d / 30) + ' meses atrás'; },
+        months:  function(d) { return Math.floor(d / 30) + ' meses atrás'; },
         year:    '1 ano atrás',
         years:   function(y) { return Math.round(y) + ' anos atrás'; }
     },
@@ -413,7 +413,7 @@ WPacTime.Messages = {
         day:     'nappal ezelőtt',
         days:    function(d) { return Math.round(d) + ' nappal ezelőtt'; },
         month:   'hónappal ezelőtt',
-        months:  function(d) { return Math.round(d / 30) + ' hónappal ezelőtt'; },
+        months:  function(d) { return Math.floor(d / 30) + ' hónappal ezelőtt'; },
         year:    'évvel ezelőtt',
         years:   function(y) { return Math.round(y) + ' évvel ezelőtt'; }
     },
@@ -426,7 +426,7 @@ WPacTime.Messages = {
         day:     'päivä sitten',
         days:    function(d) { return Math.round(d) + ' päivää sitten'; },
         month:   'kuukausi sitten',
-        months:  function(d) { return Math.round(d / 30) + ' kuukautta sitten'; },
+        months:  function(d) { return Math.floor(d / 30) + ' kuukautta sitten'; },
         year:    'vuosi sitten',
         years:   function(y) { return Math.round(y) + ' vuotta sitten'; }
     },
@@ -439,7 +439,7 @@ WPacTime.Messages = {
         day:     'לפני יום',
         days:    function(d) { return 'לפני ' + Math.round(d) + ' ימים'; },
         month:   'לפני חודש',
-        months:  function(d) { return Math.round(d / 30) == 2 ? 'לפני חודשיים' : 'לפני ' + Math.round(d / 30) + ' חודשים'; },
+        months:  function(d) { return Math.floor(d / 30) == 2 ? 'לפני חודשיים' : 'לפני ' + Math.floor(d / 30) + ' חודשים'; },
         year:    'לפני שנה',
         years:   function(y) { return 'לפני ' + Math.round(y) + ' שנים'; }
     },
@@ -452,7 +452,7 @@ WPacTime.Messages = {
         day:     'преди 1 ден',
         days:    function(d) { return 'преди ' + Math.round(d) + ' дни'; },
         month:   'преди 1 месец',
-        months:  function(d) { return 'преди ' + Math.round(d / 30) + ' месеца'; },
+        months:  function(d) { return 'преди ' + Math.floor(d / 30) + ' месеца'; },
         year:    'преди 1 година',
         years:   function(y) { return 'преди ' + Math.round(y) + ' години'; }
     },
@@ -465,7 +465,7 @@ WPacTime.Messages = {
         day:     'včera',
         days:    function(d) { return 'pred ' + Math.round(d) + ' dňami'; },
         month:   'pred mesiacom',
-        months:  function(d) { return 'pred ' + Math.round(d / 30) + ' mesiacmi'; },
+        months:  function(d) { return 'pred ' + Math.floor(d / 30) + ' mesiacmi'; },
         year:    'pred rokom',
         years:   function(y) { return 'pred ' + Math.round(y) + ' rokmi'; }
     },
@@ -478,7 +478,7 @@ WPacTime.Messages = {
         day:     'ໜຶ່ງມື້ກ່ອນ',
         days:    function(d) { return Math.round(d) + ' ມື້ກ່ອນ'; },
         month:   'ໜຶ່ງເດືອນກ່ອນ',
-        months:  function(d) { return Math.round(d / 30) + ' ເດືອນກ່ອນ'; },
+        months:  function(d) { return Math.floor(d / 30) + ' ເດືອນກ່ອນ'; },
         year:    'ໜຶ່ງປີກ່ອນ',
         years:   function(y) { return Math.round(y) + ' ປີກ່ອນ'; }
     },
@@ -491,7 +491,7 @@ WPacTime.Messages = {
         day:     'pred enim dnem',
         days:    function(d) { return 'pred ' + Math.round(d) + ' dnevi'; },
         month:   'pred enim mesecem',
-        months:  function(d) { return 'pred ' + Math.round(d / 30) + ' meseci'; },
+        months:  function(d) { return 'pred ' + Math.floor(d / 30) + ' meseci'; },
         year:    'pred enim letom',
         years:   function(y) { return 'pred ' + Math.round(y) + ' leti'; }
     },
@@ -504,7 +504,7 @@ WPacTime.Messages = {
         day:     'päev tagasi',
         days:    function(d) { return Math.round(d) + ' päeva tagasi'; },
         month:   'kuu aega tagasi',
-        months:  function(d) { return Math.round(d / 30) + ' kuud tagasi'; },
+        months:  function(d) { return Math.floor(d / 30) + ' kuud tagasi'; },
         year:    'aasta tagasi',
         years:   function(y) { return Math.round(y) + ' aastat tagasi'; }
     }

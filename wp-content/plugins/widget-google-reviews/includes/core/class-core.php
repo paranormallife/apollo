@@ -26,6 +26,9 @@ class Core {
 
             'header_merge_social'       => false,
             'header_hide_social'        => false,
+            'header_center'             => false,
+            'header_hide_photo'         => false,
+            'header_hide_name'          => false,
 
             'dark_theme'                => false,
             'centered'                  => false,
@@ -121,8 +124,6 @@ class Core {
 
         if ($google_business != null) {
 
-            $schedule_step = 60 * 60 * 12;
-
             foreach ($google_business as $biz) {
 
                 $result = $this->get_google_reviews($biz, $is_admin);
@@ -134,13 +135,7 @@ class Core {
                     if (isset($biz->lang) && strlen($biz->lang) > 0) {
                         array_push($args, $biz->lang);
                     }
-                    $schedule_cache_key = 'grw_refresh_reviews_' . join('_', $args);
-                    if (get_transient($schedule_cache_key) === false) {
-                        wp_schedule_single_event(time() + $schedule_step, 'grw_refresh_reviews', array($args));
-                        set_transient($schedule_cache_key, $schedule_cache_key, $schedule_step + 60 * 10);
-                    }
                 }
-                $schedule_step = $schedule_step + 60 * 60 * 12;
             }
         }
 
@@ -286,11 +281,15 @@ class Core {
 
         $places = $place_id > 0 ?
                   $wpdb->get_results($wpdb->prepare($place_sql, sanitize_text_field(wp_unslash($place_id)))) :
-                  $wpdb->get_results($wpdb->prepare($place_sql));
+                  $wpdb->get_results($place_sql);
+
+        $count = count($places);
+        if ($count < 1) {
+            return null;
+        }
 
         $rating = 0;
         $review_count = 0;
-        $count = count($places);
         $google_places = array();
         $google_place_ids = array();
 

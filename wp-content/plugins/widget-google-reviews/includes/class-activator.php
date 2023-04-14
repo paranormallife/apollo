@@ -17,13 +17,17 @@ class Activator {
             'grw_google_api_key',
             'grw_language',
             'grw_activation_time',
-            'grw_rev_notice_hide',
-            'rplg_rev_notice_show',
-            'grw_debug_refresh',
             'grw_auth_code',
             'grw_debug_mode',
             'grw_feed_ids',
             'grw_do_activation',
+            'grw_revupd_cron',
+            'grw_revupd_cron_timeout',
+            'grw_revupd_cron_log',
+            'grw_debug_refresh',
+            'grw_rev_notice_hide',
+            'rplg_rev_notice_show',
+            'grw_rate_us',
         );
     }
 

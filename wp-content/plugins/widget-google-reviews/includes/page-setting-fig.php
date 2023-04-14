@@ -1,6 +1,6 @@
 <p>To correctly use this plugin you need to get two things - <b><u>Google Place ID</u></b> and <b><u>Google Places API key</u></b>. These are two different values, please do not confuse them.</p>
 
-<p style="background: #eee; padding: 4px 10px; border-radius: 4px; border: 1px solid #ccc; font-size: 16px; font-weight: 600; text-align: center; line-height: 32px;">There is nothing complicated and the whole process will not take even 5 minutes,<br>and as a reward you receive a constantly updated and collected Google Rating and Reviews!</p>
+<p style="background: #eee; padding: 4px 10px; border-radius: 4px; border: 1px solid #ccc; font-size: 16px; font-weight: 600; text-align: center; line-height: 32px; color: #304cd3;">There is nothing complicated and the whole process will not take even 5 minutes,<br>and as a reward you receive a constantly updated and collected Google Rating and Reviews!</p>
 
 <hr></hr>
 

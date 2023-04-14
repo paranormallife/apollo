@@ -5,16 +5,18 @@ namespace WP_Rplg_Google_Reviews\Includes\Admin;
 class Admin_Notice {
 
     private static $plugin_notices = array(
-        'settings_active_0'     => 'Plugin disabled successfully.',
-        'settings_active_1'     => 'Plugin enabled successfully.',
-        'settings_save'         => 'Settings saved successfully.',
-        'settings_create_db'    => 'Database re-created successfully.',
-        'settings_reset'        => 'Settings deleted successfully.',
-        'settings_install'      => 'Plugin installed from scratch successfully.',
-        'settings_reset_all'    => 'All data including settings and reviews deleted successfully.',
-        'settings_debug_mode_0' => 'Debug mode disabled successfully.',
-        'settings_debug_mode_1' => 'Debug mode enabled successfully.',
-        'settings_update_db'    => 'Database updated successfully.',
+        'settings_active_0'      => 'Plugin disabled successfully.',
+        'settings_active_1'      => 'Plugin enabled successfully.',
+        'settings_save'          => 'Settings saved successfully.',
+        'settings_create_db'     => 'Database re-created successfully.',
+        'settings_reset'         => 'Settings deleted successfully.',
+        'settings_install'       => 'Plugin installed from scratch successfully.',
+        'settings_reset_all'     => 'All data including settings and reviews deleted successfully.',
+        'settings_debug_mode_0'  => 'Debug mode disabled successfully.',
+        'settings_debug_mode_1'  => 'Debug mode enabled successfully.',
+        'settings_update_db'     => 'Database updated successfully.',
+        'settings_revupd_cron_0' => 'Reviews update daily schedule disabled successfully.',
+        'settings_revupd_cron_1' => 'Reviews update daily schedule enabled successfully.',
     );
 
     public function register() {
@@ -46,7 +48,7 @@ class Admin_Notice {
         }
 
         ?>
-        <div class="notice notice-success is-dismissible">
+        <div class="notice notice-<?php echo get_option('grw_notice_type'); ?> is-dismissible">
             <p><?php echo $this->notice_id != 'custom_msg' ? self::$plugin_notices[$this->notice_id] : get_option('grw_notice_msg'); ?></p>
         </div>
         <?php

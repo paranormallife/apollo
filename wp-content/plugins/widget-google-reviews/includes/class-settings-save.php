@@ -2,12 +2,11 @@
 
 namespace WP_Rplg_Google_Reviews\Includes;
 
-use WP_Rplg_Google_Reviews\Includes\Core\Database;
-
 class Settings_Save {
 
-    public function __construct(Activator $activator) {
+    public function __construct(Activator $activator, Reviews_Cron $reviews_cron) {
         $this->activator = $activator;
+        $this->reviews_cron = $reviews_cron;
     }
 
     public function register() {
@@ -33,6 +32,7 @@ class Settings_Save {
         }
 
         $notice_code = null;
+        update_option('grw_notice_type', 'success');
 
         if (isset($_POST['active']) && isset($_GET['active'])) {
             $active = $_GET['active'] == '1' ? '1' : '0';
@@ -83,6 +83,25 @@ class Settings_Save {
             if (strlen($update_db_ver) > 0) {
                 $this->activator->update_db($update_db_ver);
                 $notice_code = 'settings_update_db';
+            }
+        }
+
+        if (isset($_POST['revupd_cron'])) {
+            $api_key = get_option('grw_google_api_key');
+            if ($api_key) {
+
+                $revupd_cron = $_POST['revupd_cron'] == 'Enable' ? '1' : '0';
+                update_option('grw_revupd_cron', $revupd_cron);
+
+                if ($revupd_cron == '0') {
+                    $this->reviews_cron->deactivate();
+                }
+                $notice_code = 'settings_revupd_cron_' . $revupd_cron;
+
+            } else {
+                update_option('grw_notice_type', 'error');
+                update_option('grw_notice_msg', 'To make the reviews automatically updated, please create your own Google API key. The extrimly detailed instruction how to do it, you can <a href="' . admin_url('admin.php?page=grw-support&grw_tab=fig#fig_api_key') . '" target="_blank">find here</a>.');
+                $notice_code = 'custom_msg';
             }
         }
 

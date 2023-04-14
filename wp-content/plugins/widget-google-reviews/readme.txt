@@ -1,10 +1,10 @@
 === Plugin for Google Reviews ===
 Contributors: richplugins
 Donate link: https://richplugins.com/business-reviews-bundle-wordpress-plugin
-Tags: google reviews, google, reviews, rating, widget, reviews plugin, google business, testimonial, testimonials, google places reviews, map reviews, google my business
+Tags: google reviews, google, reviews, rating, widget, ratings, reviews plugin, google business, testimonial, testimonials, google places reviews, map reviews, google my business
 Requires at least: 2.8
-Tested up to: 6.1
-Stable tag: 2.2.4
+Tested up to: 6.2
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ By the way, with the <a href="https://richplugins.com/business-reviews-bundle-wo
 ### Free plugin features
 
 * **Multiple widgets and Google places**, not just one like in other similar plugins
-* All connected Google ratings and reviews are **automatically updated** without any manual actions
+* All connected Google ratings and reviews are **automatically updated**
 * Awesome, responsive and really cool slider which works anywhere - mobile, table, desktops and HD
 * **Collect new Google Reviews** and increase your Google Rating with a **'review us on G'** button
 * Slider don't fit? You can use a List layout or hide the reviews and show just a rating badge
@@ -46,7 +46,7 @@ By the way, with the <a href="https://richplugins.com/business-reviews-bundle-wo
 The business version of the plugin uses another Google API to show all reviews. It's also official and approved by Google like in the free plugin, but can uses only for business owners and show all reviews. To connect reviews, just log in through your Google My Business (GMB) owner account and that's it.
 
 * Shows **ALL Google reviews** with constant **automatic updates** through official Google My Business (GMB) API without any unofficial workarounds like crawling
-* Connecting and showing reviews is easier than ever, just log in through your GMB account
+* Connecting and showing reviews is easier than ever, just log in through your GMB owner account
 * Flash theme: increase user trust, social proof and sales via beautiful popups with your real recent reviews
 * Ability to connect one, several or all your Google locations just through one log in
 * Mix ratings and reviews between each other from the same or different platforms: Google, Facebook, Yelp
@@ -97,6 +97,51 @@ To find out more about who we are and what we do, here are some useful links:
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 2.4.1 =
+* Bugfix: language change error in the new Google connection wizard
+
+= 2.4 =
+* Improve: Google reviews connection wizard
+* Bugfix: database warnings fixes
+
+= 2.3 =
+* Improve design: stars color, widget builder
+* Bugfix: wrong argument in foreach loop
+* Bugfix: Undefined property key in reviews connection
+* Bugfix: Undefined property language in the reviews update schedule
+* Update to WP 6.2
+
+= 2.2.9 =
+* Improve: new options (rating by center, hide biz photo, hide biz name)
+* Improve: contrast (backgrounds and colors)
+* Improve: added WP language in debug information
+* Improve: SVG prev & next buttons in slider
+* Translation fixes (for Slovenian, Dutch)
+
+= 2.2.8 =
+* Improve: GDPR full support
+* Improve: save business and user images locally
+* Improve: change language dynamically
+* Improve: reconnect button
+* Bugfix: clear cache in refresh reviews schedule
+* Bugfix: business photo is not round
+* Bugfix: floor round for time ago months
+
+= 2.2.7 =
+* Bugfix: Stop instant autoscroll of the slider
+* Improve: business plugin description update
+
+= 2.2.6 =
+* Bugfix: undefined array key 'place_id'
+* Bugfix: the query argument of wpdb::prepare() must have a placeholder
+* Bugfix: empty feed in reviews update schedule
+* Bugfix: some style fixes
+
+= 2.2.5 =
+* Improve: reviews update daily schedule
+* Bugfix: slider lite correctly fit with one column layout
+* Bugfix: CSS RTL rule fixes
 
 = 2.2.4 =
 * Bugfix related with the previous release

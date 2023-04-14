@@ -42,7 +42,12 @@ class Admin_Tophead {
                 <div class="grw-version">
                     <div class="grw-version-free">Free Version: <?php echo GRW_VERSION; ?></div>
                     <div class="grw-version-upgrade">
-                        <a href="https://richplugins.com/business-reviews-bundle-wordpress-plugin" target="_blank">Upgrade to business</a>
+                        <a href="https://richplugins.com/business-reviews-bundle-wordpress-plugin" target="_blank">Upgrade to business <span>><span></a>
+                        <div id="grw-upgrade-tips">
+                            <b>Most easiest way to show all G reviews with business version.</b><br>
+                            No Place ID, No API key, No Billing needed, only Google My Business (GMB) owner account to show all G reviews with constantly auto synced!
+                            <div>30% off with promo code: GRGROW23</div>
+                        </div>
                     </div>
                 </div>
             </div>

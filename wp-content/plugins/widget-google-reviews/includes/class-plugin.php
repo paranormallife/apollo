@@ -7,6 +7,7 @@ use WP_Rplg_Google_Reviews\Includes\Admin\Admin_Tophead;
 use WP_Rplg_Google_Reviews\Includes\Admin\Admin_Notice;
 use WP_Rplg_Google_Reviews\Includes\Admin\Admin_Feed_Columns;
 use WP_Rplg_Google_Reviews\Includes\Admin\Admin_Rev;
+use WP_Rplg_Google_Reviews\Includes\Admin\Admin_Rateus_Ajax;
 
 use WP_Rplg_Google_Reviews\Includes\Core\Core;
 use WP_Rplg_Google_Reviews\Includes\Core\Connect_Google;
@@ -17,6 +18,7 @@ final class Plugin {
     protected $name;
     protected $version;
     protected $activator;
+    protected $deactivator;
 
     public function __construct() {
         $this->name = 'widget-google-reviews';
@@ -82,6 +84,11 @@ final class Plugin {
 
         $connect_google = new Connect_Google();
 
+        $reviews_cron = new Reviews_Cron($connect_google, $feed_deserializer);
+        $reviews_cron->register();
+
+        $this->deactivator = new Deactivator($reviews_cron);
+
         if (is_admin()) {
             $feed_serializer = new Feed_Serializer();
             $feed_serializer_ajax = new Feed_Serializer_Ajax($feed_serializer, $feed_deserializer, $core, $view);
@@ -102,7 +109,7 @@ final class Plugin {
             $plugin_overview = new Plugin_Overview();
             $plugin_overview->register();
 
-            $settings_save = new Settings_Save($activator);
+            $settings_save = new Settings_Save($activator, $reviews_cron);
             $settings_save->register();
 
             $plugin_settings = new Plugin_Settings($debug_info);
@@ -113,6 +120,8 @@ final class Plugin {
 
             $admin_rev = new Admin_Rev();
             $admin_rev->register();
+
+            $rateus_ajax = new Admin_Rateus_Ajax();
         }
     }
 
@@ -133,7 +142,6 @@ final class Plugin {
     }
 
     public function deactivate() {
-        $deactivator = new Deactivator();
-        $deactivator->deactivate();
+        $this->deactivator->deactivate();
     }
 }

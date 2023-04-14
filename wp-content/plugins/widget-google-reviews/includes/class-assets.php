@@ -98,7 +98,6 @@ class Assets {
             'supportUrl'    => admin_url('admin.php?page=grw-support'),
             'builderUrl'    => admin_url('admin.php?page=grw-builder'),
             'actionPrefix'  => 'grw',
-            'wordpress'     => true,
         );
 
         if ($this->debug) {

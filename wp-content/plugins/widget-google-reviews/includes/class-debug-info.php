@@ -23,6 +23,8 @@ PHP Version: <?php echo esc_html(phpversion()); ?>
 
 WP Version: <?php echo esc_html($wp_version); ?>
 
+WP Language: <?php echo get_locale(); ?>
+
 Active Theme:
 <?php
 if (!function_exists('wp_get_theme')) {
@@ -64,8 +66,10 @@ foreach (get_plugins() as $key => $plugin) {
 
 <?php
 $feeds = $this->feed_deserializer->get_all_feeds();
-foreach ($feeds as $feed) {
-    echo $feed->ID . " " . $feed->post_title . ": " . $feed->post_content . "\r\n\r\n";
+if (is_array($feeds) || is_object($feeds)) {
+    foreach ($feeds as $feed) {
+        echo $feed->ID . " " . $feed->post_title . ": " . $feed->post_content . "\r\n\r\n";
+    }
 }
 ?>
 

@@ -6,7 +6,6 @@ class Connect_Google {
 
     public function __construct() {
         add_action('init', array($this, 'request_handler'));
-        add_action('grw_refresh_reviews', array($this, 'grw_refresh_reviews'));
     }
 
     public function request_handler() {
@@ -24,14 +23,17 @@ class Connect_Google {
                         } else {
                             check_admin_referer('grw_wpnonce', 'grw_wpnonce');
 
-                            $key = sanitize_text_field(wp_unslash($_POST['key']));
-                            if (strlen($key) > 0) {
-                                update_option('grw_google_api_key', $key);
+                            if (isset($_POST['key'])) {
+                                $key = sanitize_text_field(wp_unslash($_POST['key']));
+                                if (strlen($key) > 0) {
+                                    update_option('grw_google_api_key', $key);
+                                }
                             }
                             $google_api_key = get_option('grw_google_api_key');
 
                             $id = sanitize_text_field(wp_unslash($_POST['id']));
                             $lang = sanitize_text_field(wp_unslash($_POST['lang']));
+                            $local_img = sanitize_text_field(wp_unslash($_POST['local_img']));
 
                             if ($google_api_key && strlen($google_api_key) > 0) {
                                 $url = $this->api_url($id, $google_api_key, $lang);
@@ -56,7 +58,7 @@ class Connect_Google {
                                     $body_json->result->business_photo = $photo;
                                 }
 
-                                $this->save_reviews($body_json->result);
+                                $this->save_reviews($body_json->result, $local_img);
 
                                 $result = array(
                                     'id'      => $body_json->result->place_id,
@@ -66,6 +68,10 @@ class Connect_Google {
                                     'reviews' => $body_json->result->reviews
                                 );
                                 $status = 'success';
+
+                                if ($_POST['feed_id']) {
+                                    delete_transient('grw_feed_' . GRW_VERSION . '_' . $_POST['feed_id'] . '_reviews', false);
+                                }
                             } else {
                                 $result = $body_json;
                                 $status = 'failed';
@@ -129,6 +135,7 @@ class Connect_Google {
 
         $place_id = $args[0];
         $reviews_lang = $args[1];
+        $local_img = isset($args[2]) ? $args[2] : 'false';
 
         $url = $this->api_url($place_id, $google_api_key, $reviews_lang);
 
@@ -140,13 +147,11 @@ class Connect_Google {
             $photo = $this->business_avatar($body_json->result, $google_api_key);
             $body_json->result->business_photo = $photo;
 
-            $this->save_reviews($body_json->result);
+            $this->save_reviews($body_json->result, $local_img);
         }
-
-        delete_transient('grw_refresh_reviews_' . join('_', $args));
     }
 
-    function save_reviews($place) {
+    function save_reviews($place, $local_img) {
         global $wpdb;
 
         $google_place_id = $wpdb->get_var(
@@ -241,34 +246,47 @@ class Connect_Google {
                 $google_review_id = 0;
                 if (isset($review->author_url) && strlen($review->author_url) > 0) {
                     $where = " WHERE author_url = %s";
-                    $where_array = array($review->author_url);
+                    $where_params = array($review->author_url);
                 } elseif (isset($review->author_name) && strlen($review->author_name) > 0) {
                     $where = " WHERE author_name = %s";
-                    $where_array = array($review->author_name);
+                    $where_params = array($review->author_name);
                 } else {
                     $where = " WHERE time = %s";
-                    $where_array = array($review->time);
+                    $where_params = array($review->time);
                 }
 
-                $review_lang = ($review->language == 'en-US' ? 'en' : $review->language);
-                if (strlen($review_lang) > 0) {
-                    $where = $where . " AND language = %s";
-                    array_push($where_array, $review_lang);
+                $review_lang = null;
+                if (isset($review->language)) {
+                    $review_lang = ($review->language == 'en-US' ? 'en' : $review->language);
+                    if (strlen($review_lang) > 0) {
+                        $where = $where . " AND language = %s";
+                        array_push($where_params, $review_lang);
+                    }
                 }
 
                 $google_review_id = $wpdb->get_var(
                     $wpdb->prepare(
-                        "SELECT id FROM " . $wpdb->prefix . Database::REVIEW_TABLE . $where, $where_array
+                        "SELECT id FROM " . $wpdb->prefix . Database::REVIEW_TABLE . $where, $where_params
                     )
                 );
+
+                $author_img = null;
+                if (isset($review->profile_photo_url)) {
+                    if ($local_img === true || $local_img == 'true') {
+                        $img_name = $place->place_id . '_' . md5($review->profile_photo_url);
+                        $author_img = $this->upload_image($review->profile_photo_url, $img_name);
+                    } else {
+                        $author_img = $review->profile_photo_url;
+                    }
+                }
 
                 if ($google_review_id) {
                     $update_params = array(
                         'rating' => $review->rating,
                         'text'   => $review->text
                     );
-                    if (isset($review->profile_photo_url)) {
-                        $update_params['profile_photo_url'] = $review->profile_photo_url;
+                    if ($author_img) {
+                        $update_params['profile_photo_url'] = $author_img;
                     }
                     $wpdb->update($wpdb->prefix . Database::REVIEW_TABLE, $update_params, array('id' => $google_review_id));
                 } else {
@@ -279,8 +297,8 @@ class Connect_Google {
                         'time'              => $review->time,
                         'language'          => $review_lang,
                         'author_name'       => $review->author_name,
-                        'author_url'        => isset($review->author_url)        ? $review->author_url        : null,
-                        'profile_photo_url' => isset($review->profile_photo_url) ? $review->profile_photo_url : null
+                        'author_url'        => isset($review->author_url) ? $review->author_url : null,
+                        'profile_photo_url' => $author_img
                     ));
                 }
             }
@@ -306,22 +324,30 @@ class Connect_Google {
                 ),
                 'https://maps.googleapis.com/maps/api/place/photo'
             );
-            $res = wp_remote_get($url, array('timeout' => 8));
-            if(!is_wp_error($res)) {
-                $bits = wp_remote_retrieve_body($res);
-                $filename = $response_result_json->place_id . '.jpg';
-
-                $upload_dir = wp_upload_dir();
-                $full_filepath = $upload_dir['path'] . '/' . $filename;
-                if (file_exists($full_filepath)) {
-                    wp_delete_file($full_filepath);
-                }
-
-                $upload = wp_upload_bits($filename, null, $bits);
-                return $upload['url'];
-            }
+            return $this->upload_image($url, $response_result_json->place_id);
         }
         return null;
+    }
+
+    function upload_image($url, $name) {
+        $res = wp_remote_get($url, array('timeout' => 8));
+
+        if(is_wp_error($res)) {
+            // LOG
+            return null;
+        }
+
+        $bits = wp_remote_retrieve_body($res);
+        $filename = $name . '.jpg';
+
+        $upload_dir = wp_upload_dir();
+        $full_filepath = $upload_dir['path'] . '/' . $filename;
+        if (file_exists($full_filepath)) {
+            wp_delete_file($full_filepath);
+        }
+
+        $upload = wp_upload_bits($filename, null, $bits);
+        return $upload['url'];
     }
 
 }

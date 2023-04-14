@@ -65,7 +65,7 @@
     background-attachment: scroll!important;
     background-color: transparent!important;
     background-image: none!important;
-    background-position: 100% 0!important;
+    background-position: 0 0!important;
     background-repeat: repeat!important;
     border-color: black!important;
     border-color: currentColor!important;
@@ -101,7 +101,7 @@
     min-width: 0!important;
     opacity: 1;
     outline: invert none medium!important;
-    overflow: visible!important;
+    /*overflow: visible!important;*/
     padding: 0!important;
     position: static!important;
     quotes: "" ""!important;

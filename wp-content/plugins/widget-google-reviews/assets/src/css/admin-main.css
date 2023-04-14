@@ -53,6 +53,14 @@
     z-index: 1;
 }
 
+.grw-admin .notice p {
+    font-size: 14px;
+}
+
+.grw-admin .notice.notice-error p {
+    color: #d63638;
+}
+
 /*-------------------------------- Top Header --------------------------------*/
 .grw-tophead {
     -ms-flex-align: center;
@@ -64,7 +72,6 @@
     border-bottom: 1px solid #cfd9db;
     padding: 15px 20px;
     box-sizing: border-box;
-    overflow: hidden;
     position: relative;
     top: 46px;
     width: 100%;
@@ -106,38 +113,79 @@
 }
 
 .grw-version {
-  position: absolute;
-  top: 0px;
-  right: 16px;
-  text-align: center;
+    position: absolute;
+    top: 0px;
+    right: 16px;
+    text-align: center;
 }
 
 .grw-version-free {
-  display: inline-block;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  margin: 12px 0 3px;
-  padding: 4px 10px;
-  font-size: 12px;
-  line-height: 14px;
-  color: #FFF;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  white-space: nowrap;
-  vertical-align: baseline;
-  background-color: #999;
+    display: inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 12px 0 3px;
+    padding: 4px 10px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #FFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #999;
 }
 
 .grw-version-upgrade a {
-  color: #4ea2e7;
-  font-size: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  text-transform: uppercase;
+    color: #4ea2e7;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 4px;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .grw-version-upgrade a:hover {
-  color: #157cd1;
+    color: #157cd1;
+}
+
+.grw-version-upgrade a span {
+    color: #2576b9;
+    font-size: 14px;
+    vertical-align: bottom;
+}
+
+#grw-upgrade-tips {
+    position: absolute;
+    right: 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 2px 0 0;
+    z-index: 5;
+    background: #fff;
+    width: 256px;
+    text-align: left;
+    font-size: 16px;
+    line-height: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease,transform .2s ease,-webkit-transform .2s ease;
+}
+
+#grw-upgrade-tips:hover,
+.grw-version-upgrade a:hover + #grw-upgrade-tips {
+    opacity: 1;
+    visibility: visible;
+}
+
+#grw-upgrade-tips > div {
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin: 10px 0 0;
+    border-top: 1px solid #ccc;
 }
 
 /*-------------------------------- Builder page --------------------------------*/
@@ -266,6 +314,109 @@
 
 .wp-gr .wp-review-hide:hover {
     background-color: #1d62ab !important;
+}
+
+#grw-rate_us-wrap {
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 100%;
+    width: auto;
+    font-size: 16px;
+    z-index: 99999;
+}
+
+#grw-rate_us {
+    padding: 18px;
+    opacity: 0;
+    -webkit-transform: translate(0px, 0%);
+    -ms-transform: translate(0px, 0%);
+    transform: translate(0px, 0%);
+    -webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
+    transition: opacity 300ms ease, -webkit-transform 300ms ease;
+    transition: transform 300ms ease, opacity 300ms ease;
+    transition: transform 300ms ease, opacity 300ms ease, -webkit-transform 300ms ease;
+}
+
+#grw-rate_us.grw-flash-visible {
+    opacity: 1;
+    -webkit-transform: translate(0px, -100%);
+    -ms-transform: translate(0px, -100%);
+    transform: translate(0px, -100%);
+    text-align: left;
+}
+
+#grw-rate_us.grw-flash-visible.grw-flash-gout {
+    opacity: .5;
+    -webkit-transition: opacity 150ms ease;
+    transition: opacity 150ms ease;
+    transition: opacity 150ms ease;
+    transition: opacity 150ms ease;
+}
+
+.grw-rate_us-content {
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.grw-rate_us-head {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}
+
+.grw-rate_us-body {
+    font-size: 18px;
+}
+
+.grw-rate_us-body .wp-stars {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.grw-rate_us-body .wp-star,
+.grw-rate_us-body .wp-star svg,
+#grw-rate_us-feedback .wp-star svg {
+    display: inline-block;
+    padding: 2px 3px;
+}
+
+.grw-rate_us-body .wp-star svg,
+#grw-rate_us-feedback .wp-star svg {
+    width: 24px;
+    height: 24px;
+}
+
+.grw-rate_us-body .wp-star svg path {
+    fill: #fa8e08;
+}
+
+.grw-rate_us-body .wp-star:hover ~ .wp-star svg path {
+    fill: #ccc;
+}
+
+#grw-rate_us-feedback {
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+}
+
+#grw-rate_us-feedback input {
+    width: 100%;
+}
+
+#grw-rate_us-feedback textarea {
+    width: 100%;
+    height: 128px;
+}
+
+#grw-rate_us-feedback button {
+    margin: 0 10px;
+    padding: 5px 15px;
+    cursor: pointer;
 }
 
 /*-------------------------------- Overview page --------------------------------*/
@@ -464,8 +615,8 @@
         flex-wrap: wrap;
     }
     .grw-field-label {
-        flex: 0 0 25%;
-        padding-right: 4%;
+        flex: 0 0 28%;
+        padding-right: 2%;
     }
     .grw-field-option {
         flex: 0 0 75%;
@@ -567,7 +718,7 @@
 }
 
 /*.grw-platform-google .grw-builder-top {
-    color: #e7711b;
+    color: #fb8e28;
 }
 
 .grw-platform-facebook .grw-builder-top {
@@ -651,6 +802,31 @@
     font-size: 12px;
     text-transform: uppercase;
     background: #fa8e08;
+}
+
+.grw-connect-btn {
+    color: #fff;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    background: #fa8e08;
+    box-shadow: 0 0 2px rgb(0 0 0 / 12%), 0 2px 4px rgb(0 0 0 / 24%);
+    text-decoration: none;
+    user-select: none;
+}
+
+.grw-connect-btn:hover {
+    background: #ef8d14;
+    box-shadow: 0 0 2px rgb(0 0 0 / 12%), 0 3px 5px rgb(0 0 0 / 24%);
+}
+
+.grw-connect-btn:active {
+    background: #fa8e08;
+    box-shadow: 0 0 2px rgb(0 0 0 / 12%), 0 0px 1px rgb(0 0 0 / 24%);
 }
 
 .grw-connect-google-inside {
@@ -779,4 +955,23 @@
     height: 260px;
     font-size: 12px;
     word-break: break-all;
+}
+
+/*-------------------------------- G connection wizard --------------------------------*/
+#grw-connect-wizard p {
+    color: #c73232;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#grw-connect-wizard input,
+#grw-connect-wizard select {
+    width: 45%;
+}
+
+#grw-connect-wizard button {
+    display: block;
+    width: 45%;
+    height: 30px;
+    margin: 0 auto;
 }

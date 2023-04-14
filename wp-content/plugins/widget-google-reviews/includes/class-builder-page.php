@@ -47,6 +47,8 @@ class Builder_Page {
         $businesses = null;
         $reviews = null;
 
+        $rate_us = get_option('grw_rate_us');
+
         if ($feed != null) {
             $feed_id = $feed->ID;
             $feed_post_title = $feed->post_title;
@@ -103,14 +105,44 @@ class Builder_Page {
             </form>
         </div>
 
+        <?php if (!$rate_us) { ?>
+        <div id="grw-rate_us-wrap">
+            <div id="grw-rate_us">
+                <div class="grw-rate_us-content">
+                    <div class="grw-rate_us-head">
+                        How's experience with RichPlugins?
+                    </div>
+                    <div class="grw-rate_us-body">
+                        Rate us clicking on the stars:
+                        <?php $this->view->grw_stars(5); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+
+        <div id="grw-rate_us-feedback" title="Thanks for your feedback!" style="display:none;">
+            <b>Please tell us how we can improve the plugin.</b>
+            <p style="font-size:16px;">
+                <span id="grw-rate_us-feedback-stars"></span>
+            </p>
+            <p style="font-size:16px;">
+                <input type="text" value="<?php global $current_user; echo $current_user->user_email; ?>" placeholder="Contact email"/>
+            </p>
+            <p style="font-size:16px;">
+                <textarea autofocus placeholder="Describe your experience and how we can improve that"></textarea>
+            </p>
+            <button class="grw-rate_us-cancel">Cancel</button><button  class="grw-rate_us-send">Send</button>
+        </div>
+
         <div id="dialog" title="Google API key required" style="display:none;">
-            <p style="font-size:14px;">
+            <p style="font-size:16px;">
                 This plugin uses our default <b>Google Places API key which is mandatory for retrieving Google reviews</b> through official way approved by Google (without crawling). Our API key can make 5 requests to Google API for each WordPress server and it's exceeded at the moment.
             </p>
-            <p style="font-size:14px;">
+            <p style="font-size:16px;">
                 To continue working with Google API and daily reviews refreshing, please create your own API key by <a href="<?php echo admin_url('admin.php?page=grw-support&grw_tab=fig#fig_api_key'); ?>" target="_blank">this instruction</a> and save it on the settings page of the plugin.
             </p>
-            <p style="font-size:14px;">
+            <p style="font-size:16px;">
                 Don’t worry, it will be free because Google is currently giving free credit a month and it should be enough to use the plugin for connecting several Google places and daily refresh of reviews.
             </p>
         </div>
