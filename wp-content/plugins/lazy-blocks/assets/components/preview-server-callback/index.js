@@ -18,7 +18,7 @@ const { doAction, applyFilters } = wp.hooks;
 
 const { useSelect } = wp.data;
 
-const { useDebounce, usePrevious } = wp.compose;
+const { usePrevious } = wp.compose;
 
 /**
  * Block Editor custom PHP preview.
@@ -36,11 +36,13 @@ export default function PreviewServerCallback(props) {
   } = props;
 
   const [response, setResponse] = useState(null);
+  const [onChanged, setOnChanged] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [allowRender, setAllowRender] = useState(true);
 
   const isMountedRef = useRef(true);
   const currentFetchRequest = useRef(null);
+  const fetchTimeout = useRef();
 
   const prevProps = usePrevious(props);
 
@@ -51,6 +53,11 @@ export default function PreviewServerCallback(props) {
       postId: getCurrentPostId ? getCurrentPostId() : 0,
     };
   }, []);
+
+  function updateResponse(data) {
+    setResponse(data);
+    setOnChanged(onChanged + 1);
+  }
 
   function fetchData() {
     if (!isMountedRef.current) {
@@ -68,7 +75,7 @@ export default function PreviewServerCallback(props) {
         context: 'editor',
         name: block,
         post_id: postId || 0,
-        ...(null !== attributes ? { attributes } : {}),
+        ...(attributes !== null ? { attributes } : {}),
         ...urlQueryArgs,
       },
     })
@@ -83,12 +90,12 @@ export default function PreviewServerCallback(props) {
           doAction('lazyblocks.components.PreviewServerCallback.onBeforeChange', props);
 
           if (res && res.success) {
-            setResponse(res.response);
+            updateResponse(res.response);
           } else if (res && !res.success && res.error_code) {
-            if ('lazy_block_invalid' === res.error_code) {
-              setResponse(null);
-            } else if ('lazy_block_no_render_callback' === res.error_code) {
-              setResponse(null);
+            if (res.error_code === 'lazy_block_invalid') {
+              updateResponse(null);
+            } else if (res.error_code === 'lazy_block_no_render_callback') {
+              updateResponse(null);
               setAllowRender(false);
             }
           }
@@ -106,7 +113,7 @@ export default function PreviewServerCallback(props) {
           doAction('lzb.components.PreviewServerCallback.onBeforeChange', props);
           doAction('lazyblocks.components.PreviewServerCallback.onBeforeChange', props);
 
-          setResponse({
+          updateResponse({
             error: true,
             response: res,
           });
@@ -118,7 +125,14 @@ export default function PreviewServerCallback(props) {
     currentFetchRequest.current = fetchRequest;
   }
 
-  const debouncedFetchData = useDebounce(fetchData, 500);
+  const debouncedFetchData = () => {
+    // Clear the previous timeout.
+    clearTimeout(fetchTimeout.current);
+
+    fetchTimeout.current = setTimeout(() => {
+      fetchData();
+    }, 500);
+  };
 
   // When the component unmounts, set isMountedRef to false. This will
   // let the async fetch callbacks know when to stop.
@@ -140,7 +154,7 @@ export default function PreviewServerCallback(props) {
       props,
       prevProps,
       response,
-      setResponse,
+      setResponse: updateResponse,
       isLoading,
       setIsLoading,
       allowRender,
@@ -167,10 +181,15 @@ export default function PreviewServerCallback(props) {
 
   // Handle callbacks and events when response changed.
   useEffect(() => {
+    // Prevent initial render call.
+    if (!onChanged) {
+      return;
+    }
+
     onChange();
     doAction('lzb.components.PreviewServerCallback.onChange', props);
     doAction('lazyblocks.components.PreviewServerCallback.onChange', props);
-  }, [response]);
+  }, [onChanged]);
 
   let result = '';
 
