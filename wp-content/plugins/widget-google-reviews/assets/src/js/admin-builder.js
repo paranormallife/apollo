@@ -253,13 +253,18 @@ function grw_builder_init($, data) {
 
     el.innerHTML = GRW_HTML_CONTENT;
 
+    var connect_google_el = el.querySelector('.grw-connect-google-inside'),
+        google_pid_el = el.querySelector('.grw-connect-id');
+
     if (data.conns) {
         grw_deserialize_connections($, el, data.conns, data.opts);
+    } else {
+        connect_google_el.style = '';
+        google_pid_el.focus();
     }
 
     // Google Connect
-    var platform_google_el = el.querySelector('.grw-connect-google-inside');
-    grw_connection($, platform_google_el, 'google', data.authcode);
+    grw_connection($, connect_google_el, 'google', data.authcode);
 
     $('.grw-connect-options input[type="text"],.grw-connect-options textarea').keyup(function() {
         grw_serialize_connections();
@@ -274,7 +279,7 @@ function grw_builder_init($, data) {
     });
 
     $('.grw-toggle.grw-connect-google').click(function () {
-        el.querySelector('.grw-connect-id').focus();
+        google_pid_el.focus();
     });
 
     if ($('.grw-connections').sortable) {
@@ -308,10 +313,11 @@ function grw_feed_save_ajax($) {
 
     jQuery.post(ajaxurl, {
 
-        post_id : window.grw_post_id.value,
-        title   : window.grw_title.value,
-        content : document.getElementById('grw-builder-connection').value,
-        action  : 'grw_feed_save_ajax'
+        post_id   : window.grw_post_id.value,
+        title     : window.grw_title.value,
+        content   : document.getElementById('grw-builder-connection').value,
+        action    : 'grw_feed_save_ajax',
+        grw_nonce : jQuery('#grw_nonce').val()
 
     }, function(res) {
 

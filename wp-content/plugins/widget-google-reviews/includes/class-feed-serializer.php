@@ -28,6 +28,13 @@ class Feed_Serializer {
     }
 
     public function save($post_id, $title, $content) {
+
+        if (!current_user_can('manage_options')) {
+            die('The account you\'re logged in to doesn\'t have permission to access this page.');
+        }
+
+        check_admin_referer('grw_wpnonce', 'grw_nonce');
+
         $post_id = wp_insert_post(array(
             'ID'           => $post_id,
             'post_title'   => $title,

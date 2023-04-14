@@ -279,15 +279,14 @@ class Core {
         global $wpdb;
 
         // -------------- Get Google place --------------
-        $place_where = $place_id > 0 ? 'AND id=' . $place_id : '';
-        $places = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT id, place_id, name, rating, review_count, updated" .
-                " FROM " . $wpdb->prefix . Database::BUSINESS_TABLE .
-                " WHERE rating > 0 AND review_count > 0 " . $place_where .
-                " ORDER BY id DESC"
-            )
-        );
+        $place_sql = "SELECT id, place_id, name, rating, review_count, updated" .
+                     " FROM " . $wpdb->prefix . Database::BUSINESS_TABLE .
+                     " WHERE rating > 0 AND review_count > 0" . ($place_id > 0 ? ' AND id = %d' : '') .
+                     " ORDER BY id DESC";
+
+        $places = $place_id > 0 ?
+                  $wpdb->get_results($wpdb->prepare($place_sql, sanitize_text_field(wp_unslash($place_id)))) :
+                  $wpdb->get_results($wpdb->prepare($place_sql));
 
         $rating = 0;
         $review_count = 0;

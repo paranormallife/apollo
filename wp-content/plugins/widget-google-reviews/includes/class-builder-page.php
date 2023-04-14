@@ -40,8 +40,6 @@ class Builder_Page {
             wp_enqueue_media();
         }
 
-        wp_nonce_field('grw_wpnonce', 'grw_nonce');
-
         $feed_id = '';
         $feed_post_title = '';
         $feed_content = '';
@@ -66,6 +64,7 @@ class Builder_Page {
         ?>
         <div class="grw-builder">
             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php?action=' . Post_Types::FEED_POST_TYPE . '_save')); ?>">
+                <?php wp_nonce_field('grw_wpnonce', 'grw_nonce'); ?>
                 <input type="hidden" id="grw_post_id" name="<?php echo Post_Types::FEED_POST_TYPE; ?>[post_id]" value="<?php echo esc_attr($feed_id); ?>">
                 <input type="hidden" id="grw_current_url" name="<?php echo Post_Types::FEED_POST_TYPE; ?>[current_url]" value="<?php echo home_url($_SERVER['REQUEST_URI']); ?>">
                 <div class="grw-builder-workspace">

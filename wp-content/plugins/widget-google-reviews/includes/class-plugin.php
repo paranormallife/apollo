@@ -27,7 +27,15 @@ final class Plugin {
         register_activation_hook(GRW_PLUGIN_FILE, array($this, 'activate'));
         register_deactivation_hook(GRW_PLUGIN_FILE, array($this, 'deactivate'));
 
+        add_action('admin_init', array($this, 'admin_init'));
         add_action('plugins_loaded', array($this, 'register_services'));
+    }
+
+    public function admin_init() {
+        if (get_option('grw_do_activation', false)) {
+            delete_option('grw_do_activation');
+            wp_safe_redirect(admin_url('admin.php?page=grw'));
+        }
     }
 
     public function register_services() {
@@ -117,6 +125,8 @@ final class Plugin {
         update_option('grw_activation_time', $now);
 
         add_option('grw_is_multisite', $network_wide);
+
+        add_option('grw_do_activation', true);
 
         $activator = new Activator(new Database());
         $activator->activate();
